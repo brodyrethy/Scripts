@@ -1,0 +1,101 @@
+#!/bin/bash
+
+function get_bytes {
+interface=$(ip route get 8.8.8.8 2>/dev/null| awk '{print $5}')
+line=$(grep $interface /proc/net/dev | cut -d ':' -f 2 | awk '{print "received_bytes="$1, "transmitted_bytes="$9}')
+eval $line
+now=$(date +%s%N)
+}
+
+function get_velocity {
+value=$1
+old_value=$2
+now=$3
+
+timediff=$(($now - $old_time))
+velKB=$(echo "1000000000*($value-$old_value)/1024/$timediff" | bc)
+if test "$velKB" -gt 1024
+then
+	echo $(echo "scale=2; $velKB/1024" | bc)MB/s
+else
+	echo ${velKB}KB/s
+fi
+}
+
+get_bytes
+old_received_bytes=$received_bytes
+old_transmitted_bytes=$transmitted_bytes
+old_time=$now
+
+print_mpd_time() {
+	mpcTime=$(mpc -p 6601 | sed -n 2p | awk '{print $3}')
+	echo -e "$mpcTime"
+}
+
+print_mpd() {
+	mpcCurrent=$(mpc -p 6601 current)
+	echo -e "$mpcCurrent"
+}
+
+print_volume() {
+	volume=$(echo $(pulsemixer --get-volume | awk '{print $2}')%)
+	volumeName=$(echo "|")
+	echo -e "$volumeName$volume"
+}
+
+print_wifi() {
+	ip=$(ip addr|awk '/wlp4s0/ && /inet/ {gsub(/\/[0-9][0-9]/,""); print $2}')
+	ipName=$(echo "|")
+	echo -e "$ipName$ip"
+}
+
+print_mem() {
+	memFree=$(($(grep -m1 'MemAvailable:' /proc/meminfo | awk '{print $2}') / 1024))
+	memSym=$(echo "MB")
+	memName=$(echo "|")
+	echo -e "$memName$memFree$memSym"
+}
+
+print_temp(){
+	temp=$(echo $(head -c 2 /sys/class/thermal/thermal_zone0/temp)C)
+	tempName=$(echo "|")
+	echo -e "$tempName$temp"
+}
+
+print_bat(){
+	bat="$(awk '{ sum += $1 } END { print sum }' /sys/class/power_supply/BAT*/capacity)"
+	batSym=$(echo "%")
+	batName=$(echo "|")
+	echo -e "$batName$bat$batSym"
+}
+
+print_date(){
+	date=$(date +"%Y-%m-%d %r")
+	dateName=$(echo "|")
+	echo -e "$dateName$date"
+}
+
+show_record(){
+	test -f /tmp/r2d2 || return
+	rp=$(cat /tmp/r2d2 | awk '{print $2}')
+	size=$(du -h $rp | awk '{print $1}')
+	echo " $size $(basename $rp)"
+}
+
+while true
+do
+
+	get_bytes
+
+	vel_recv=$(get_velocity $received_bytes $old_received_bytes $now)
+	vel_trans=$(get_velocity $transmitted_bytes $old_transmitted_bytes $now)
+
+	xsetroot -name "$(print_mpd_time) $(print_mpd) $(print_volume) $(print_mem) $(print_temp) $(print_wifi) $(print_bat)$(show_record) $(print_date)"
+
+	old_received_bytes=$received_bytes
+	old_transmitted_bytes=$transmitted_bytes
+	old_time=$now
+
+	sleep 1
+
+done
