@@ -1,2 +1,2 @@
-rsync -vru --progress /mnt/thewired_server/500GigDrive1/ ~/1TBDrive/
-rsync -vru --progress /mnt/thewired_server/500GigDrive0/ ~/1TBDrive/
+rsync -vru --progress /mnt/thewired_server/500GigDrive0/Music ~/1TBDrive/
+rsync -vru --progress /mnt/thewired_server/500GigDrive0/Visual\ Media ~/1TBDrive/

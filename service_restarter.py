@@ -1,4 +1,4 @@
-#just restarts the desired service
+#Restarts a service from the command line (Windows)
 
 def main ():
     user_input = input("What service do you want to restart")
