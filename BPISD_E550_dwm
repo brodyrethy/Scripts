@@ -10,8 +10,8 @@
 #
 # Description:
 # BPISD is a post-installation script to set up Debian 9/10.
-# In this case, dwm the wm installed. The configs used are 
-# the ones I've made over the years.
+# In this case, i3wm is the wm installed. The configs used
+# are the ones I've made over the years.
 #
 
 get_dotfiles () {

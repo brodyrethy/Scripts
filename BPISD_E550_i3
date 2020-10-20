@@ -1,15 +1,15 @@
 #!/bin/bash
 #
 # BPISD for ThinkPad E550s: i3 Edition
-#  ____  _____
-# |  _ \|  __ \  GitHub: https://github.com/brodyrethy
-# | |_) | |__) | 
-# |  _ <|  _  /  
-# | |_) | | \ \  
-# |____/|_|  \_\ Website: https://rethy.xyz
+#  _____
+# |  __ \  GitHub: https://github.com/brodyrethy
+# | |__) | 
+# |  _  /  
+# | | \ \  
+# |_|  \_\ Website: https://rethy.xyz
 #
 # Description:
-# BPISD_e550_i3 is a post-installation script to set up Debian 9/10.
+# BPISD is a post-installation script to set up Debian 9/10.
 # In this case, i3wm is the wm installed. The configs used 
 # are the ones I've made and have used over the years.
 #
@@ -55,7 +55,7 @@ get_programs () {
 	echo "Do you want to install texlive-full? (0 or 1)"
 	read answer
 
-	if [$answer == 1]
+	if [ $answer == 1 ]
 	then
 		sudo apt install texlive-full -y
 	fi
@@ -119,7 +119,6 @@ remove_nano () {
 	#The most important step
 	sudo apt purge nano -y && sudo apt remove nano -y
 }
-
 
 chown_home () {
 	sudo chown $USER:$USER -R ~

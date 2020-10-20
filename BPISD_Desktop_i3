@@ -1,17 +1,17 @@
 #!/bin/bash
 #
-# BPISD for Desktops: i3 Edition
-#  ____  _____
-# |  _ \|  __ \  GitHub: https://github.com/brodyrethy
-# | |_) | |__) | 
-# |  _ <|  _  /  
-# | |_) | | \ \  
-# |____/|_|  \_\ Website: https://rethy.xyz
+# BPISD for Desktopss: dwm Edition
+#  _____
+# |  __ \  GitHub: https://github.com/brodyrethy
+# | |__) | 
+# |  _  /  
+# | | \ \  
+# |_|  \_\ Website: https://rethy.xyz
 #
 # Description:
 # BPISD is a post-installation script to set up Debian 9/10.
-# In this case, i3wm the wm installed. The configs used are 
-# the ones I've made over the years.
+# In this case, i3wm is the wm installed. The configs used
+# are the ones I've made over the years.
 #
 
 create_dirs_and_files () {
