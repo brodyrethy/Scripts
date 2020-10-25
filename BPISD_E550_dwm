@@ -79,8 +79,6 @@ echo_data () {
 	echo "map gD cd ~/Documents" >> ~/.config/ranger/rc.conf
 	echo "map gMn cd /mnt" >> ~/.config/ranger/rc.conf
 	#.bash_aliases
-	echo "" >> ~/.bash_aliases
-	echo "#Changing directories" >> ~/.bash_aliases
 	echo "alias gM='cd ~/1TBDrive/Music'" >> ~/.bash_aliases
 	echo "alias gb='cd ~/1TBDrive/Books'" >> ~/.bash_aliases
 	echo "alias gl='cd ~/1TBDrive/LaTeX'" >> ~/.bash_aliases
@@ -92,13 +90,25 @@ echo_data () {
 	echo "alias gw='cd ~/1TBDrive/Pictures/Wallpapers'" >> ~/.bash_aliases
 	echo "alias gm='cd ~/1TBDrive/Visual Media/Movies'" >> ~/.bash_aliases
 	echo "alias gn='cd ~/1TBDrive/GitHub Storage/Notes'" >> ~/.bash_aliases
+	echo "alias gMn='cd /mnt/thewired_server'"
+	echo "alias g1tb='cd ~/1TBDrive'"
+	echo "alias crt='xrandr && xrandr --output DP-2 --mode 1024x768 --rate 85 --right-of eDP-1'"
+	echo "alias crt0='xrandr && xrandr --output DP-2 --mode 1024x768 --rate 85.00 --right-of eDP-1'"
+	echo "alias dcrt='xrandr --output DP-2 --off'"
+	echo "alias gre='cd ~/1TBDrive/GitHub/rethy.xyz'"
+	echo "alias sshac='ssh lowlife@45.79.250.220'"
+	echo "alias tott='cd ~/1TBDrive/ToolsOfTheTrade'"
+	echo "alias torb='cd ~/1TBDrive/ToolsOfTheTrade/tor-browser_en-US/'"
+	echo "alias sonic='xrandr && xrandr --output DP-2 --mode 1920x1080 --rate 60 --right-of eDP-1'"
+	echo "alias dsonic='xrandr --output DP-2 --off'"
+
 	#.xinitrc
 	echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad'" >> ~/.xinitrc
 	echo "~/Scripts/dwmbar_e550 &" >> ~/.xinitrc
 	echo "" >> ~/.xinitrc
 	echo "exec dwm" >> ~/.xinitrc
 	#.vimrc
-	echo "let g:vimwiki_list = [{'path': '~/1TBDrive/GitHub Storage/Notes'}]" >> ~/.vimrc
+	echo "let g:vimwiki_list = [{'path': '~/1TBDrive/GitHub Storage/Notes', 'syntax': 'markdown', 'ext': 'md'}]" >> ~/.vimrc
 }
 
 get_programs () {

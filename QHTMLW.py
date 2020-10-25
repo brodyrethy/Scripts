@@ -8,14 +8,14 @@ def main():
     else:
         clear = ("cls")
 
-    counter = (0)
+    counter = 0
     filename = get_input("Insert the filename of the file you want to create (omit .HTML suffix in title): ", clear)
     filename = (filename + ".html")
     filename = filename.replace(" ", "")
     filename = filename.lower()
 
-    if (check_if_file_exists(filename) == True):
-        print("Error: File exists")
+    if (os.path.isfile(filename) == True):
+        print("ERROR: File exists")
         quit()
     else:
         f = open(filename, "w")
@@ -120,8 +120,5 @@ def wrt_on_exit(filename):
     f.write("\n</html>")
     f.close()
     quit()
-
-def check_if_file_exists(filename):
-    return os.path.isfile(filename)
 
 main()
