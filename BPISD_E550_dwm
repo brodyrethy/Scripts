@@ -25,8 +25,10 @@ apply_ownership () {
 
 create_dirs () {
     sudo mkdir -p ~/.fonts
-    sudo mkdir -p ~/.config/mpc
     sudo mkdir -p ~/1TBDrive
+    sudo mkdir -p ~/.config/mpc
+	sudo mkdir -p ~/.vim/undodir
+	sudo mkdir -p ~/.Trash
 	sudo mkdir -p /mnt/thewired_server
 }
 
@@ -101,14 +103,18 @@ echo_data () {
 	echo "alias torb='cd ~/1TBDrive/ToolsOfTheTrade/tor-browser_en-US/'"
 	echo "alias sonic='xrandr && xrandr --output DP-2 --mode 1920x1080 --rate 60 --right-of eDP-1'"
 	echo "alias dsonic='xrandr --output DP-2 --off'"
-
 	#.xinitrc
 	echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad'" >> ~/.xinitrc
 	echo "~/Scripts/dwmbar_e550 &" >> ~/.xinitrc
 	echo "" >> ~/.xinitrc
 	echo "exec dwm" >> ~/.xinitrc
 	#.vimrc
+	echo ":map <leader>ghh :e ~/1TBDrive/GitHub<CR>" >> ~/.vimrc
+	echo ":map <leader>ghs :e ~/1TBDrive/GitHub<CR>" >> ~/.vimrc
+	echo ":map <leader>gre :e ~/1TBDrive/GitHub/rethy.xyz<CR>" >> ~/.vimrc
+	echo ":map <leader>t :e ~/1TBDrive/GitHub\ Storage/Notes/TODO.md<CR>" >> ~/.vimrc
 	echo "let g:vimwiki_list = [{'path': '~/1TBDrive/GitHub Storage/Notes', 'syntax': 'markdown', 'ext': 'md'}]" >> ~/.vimrc
+	echo ":map <leader>h :e /home/$USER<CR>"
 }
 
 get_programs () {
