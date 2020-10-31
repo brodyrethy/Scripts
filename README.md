@@ -4,3 +4,5 @@ Various scripts I've written over the years to do various things. Some scripts m
  
 ## TODO
 - [ ] Switch ALL if statements to switch case statements
+- [ ] 4chan_media_scraper: Fetch counter start number from file at start
+- [ ] 4chan_media_scraper: Write counter end number to file upon close
