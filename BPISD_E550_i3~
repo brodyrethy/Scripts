@@ -98,6 +98,7 @@ echo_data () {
 
 	#.xinitrc
 	echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad' &" >> ~/.xinitrc
+	echo "compton &" >> ~/.xinitrc
 	echo "" >> ~/.xinitrc
 	echo "exec i3" >> ~/.xinitrc
 
