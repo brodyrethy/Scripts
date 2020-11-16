@@ -16,7 +16,6 @@
 
 get_dotfiles () {
     git clone https://github.com/brodyrethy/dotfiles ~/dotfiles
-	wget "https://github.com/haikarainen/light/releases/download/v1.2/light_1.2_amd64.deb"
 }
 
 apply_ownership () {
@@ -31,15 +30,10 @@ create_dirs () {
 }
 
 move_files_to_dirs () {
-    #THIS COMMAND MUST RUN FIRST
-	cp ~/dotfiles/.config/config_e550 ~/dotfiles/.config/i3/config 
-
 	sudo cp -R ~/dotfiles/.fonts ~/
     sudo cp -R ~/dotfiles/.config/mpd ~/.config
     sudo cp -R ~/dotfiles/.config/ranger ~/.config
     sudo cp -R ~/dotfiles/.config/ncmpcpp ~/.config
-	sudo cp -R ~/dotfiles/.config/i3 ~/.config
-	sudo cp -R ~/dotfiles/.config/i3blocks ~/.config
 
     sudo cp ~/dotfiles/inputrc /etc/
     sudo cp ~/dotfiles/grub /etc/default/
@@ -98,7 +92,6 @@ echo_data () {
 
 	#.xinitrc
 	echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad' &" >> ~/.xinitrc
-	echo "compton &" >> ~/.xinitrc
 	echo "" >> ~/.xinitrc
 	echo "exec i3" >> ~/.xinitrc
 
@@ -108,7 +101,7 @@ echo_data () {
 
 get_programs () {
 	sudo apt update -y
-	sudo apt install i3 i3blocks ranger rxvt-unicode-256color network-manager feh xinit vim lxappearance x11-xserver-utils pulseaudio curl mpd mpc ncmpcpp firefox-esr xinput python3-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler gparted firmware-iwlwifi mercurial python-dev python3-dev ruby ruby-dev libx11-dev libxt-dev libncurses5 ncurses-dev -y
+	sudo apt install rxvt-unicode-256color feh xinit vim lxappearance x11-xserver-utils pulseaudio curl mpd mpc ncmpcpp firefox-esr xinput python3-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler gparted mercurial python-dev python3-dev ruby ruby-dev libx11-dev libxt-dev libncurses5 ncurses-dev -y
     sudo apt purge youtube-dl
 	sudo pip3 install pywal
 }
@@ -125,14 +118,9 @@ install_vim_plug () {
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
-install_light () {
-    sudo dpkg -i ~/dotfiles/light_1.2_amd64.deb
-}
-
 enable_services () {
     sudo systemctl enable mpd
     sudo systemctl enable pulseaudio
-    sudo systemctl enable network-manager
 }
 
 update_grub2 () {
@@ -141,11 +129,6 @@ update_grub2 () {
 
 remove_nano () {
     sudo apt purge nano && sudo apt remove nano
-}
-
-compile_dwm_and_st () {
-	cd ~/.config/dwm && sudo make clean install
-	cd ~/.config/st && sudo make clean install
 }
 
 clean_up () {
@@ -165,11 +148,6 @@ get_and_enable_bitmap_fonts () {
 	sudo dpkg-reconfigure fontconfig
 }
 
-get_i3_gaps_deb () {
-	git clone https://github.com/maestrogerardo/i3-gaps-deb ~/i3-gaps-deb
-	~/i3-gaps-deb/i3-gaps-deb
-}
-
 main () {
     get_dotfiles
     apply_ownership
@@ -180,13 +158,10 @@ main () {
     get_programs
     compile_py3_vim
     install_vim_plug
-    install_light
     enable_services
     remove_nano
-    get_i3_gaps_deb
     apply_ownership
     update_grub2
-	compile_dwm_and_st
     clean_up
 }
 
