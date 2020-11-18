@@ -32,7 +32,6 @@ create_dirs () {
 move_files_to_dirs () {
 	sudo cp -R ~/dotfiles/.fonts ~/
     sudo cp -R ~/dotfiles/.config/mpd ~/.config
-    sudo cp -R ~/dotfiles/.config/ranger ~/.config
     sudo cp -R ~/dotfiles/.config/ncmpcpp ~/.config
 
     sudo cp ~/dotfiles/inputrc /etc/
@@ -56,25 +55,6 @@ echo_data () {
 	#ncmpcpp
 	echo 'mpd_music_dir = "~/1TBDrive/Music"' >> ~/.config/ncmpcpp/config
 
-	#rc.conf
-	echo "" >> ~/.config/ranger/rc.conf
-	echo "#Changing directories" >> ~/.config/ranger/rc.conf
-	echo "map gM cd ~/1TBDrive/Music" >> ~/.config/ranger/rc.conf
-	echo "map gb cd ~/1TBDrive/Books" >> ~/.config/ranger/rc.conf
-	echo "map gl cd ~/1TBDrive/LaTeX" >> ~/.config/ranger/rc.conf
-	echo "map ghh cd ~/1TBDrive/GitHub" >> ~/.config/ranger/rc.conf
-	echo "map gp cd ~/1TBDrive/Pictures" >> ~/.config/ranger/rc.conf
-	echo "map gP cd ~/1TBDrive/Programming" >> ~/.config/ranger/rc.conf
-	echo "map gv cd ~/1TBDrive/Visual Media" >> ~/.config/ranger/rc.conf
-	echo "map ghs cd ~/1TBDrive/GitHub Storage" >> ~/.config/ranger/rc.conf
-	echo "map gw cd ~/1TBDrive/Pictures/Wallpapers" >> ~/.config/ranger/rc.conf
-	echo "map gm cd ~/1TBDrive/Visual Media/Movies" >> ~/.config/ranger/rc.conf
-	echo "map gn cd ~/1TBDrive/GitHub Storage/Notes" >> ~/.config/ranger/rc.conf
-	echo "map gho cd ~" >> ~/.config/ranger/rc.conf
-	echo "map gd cd ~/Downloads" >> ~/.config/ranger/rc.conf
-	echo "map gD cd ~/Documents" >> ~/.config/ranger/rc.conf
-	echo "map gMn cd /mnt" >> ~/.config/ranger/rc.conf
-
 	#.bash_aliases
 	echo "" >> ~/.bash_aliases
 	echo "#Changing directories" >> ~/.bash_aliases
@@ -93,7 +73,7 @@ echo_data () {
 	#.xinitrc
 	echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad' &" >> ~/.xinitrc
 	echo "" >> ~/.xinitrc
-	echo "exec i3" >> ~/.xinitrc
+	echo "exec wmaker" >> ~/.xinitrc
 
 	#.vimrc
 	echo "let g:vimwiki_list = [{'path': '~/1TBDrive/GitHub Storage/Notes'}]" >> ~/.vimrc
@@ -101,7 +81,7 @@ echo_data () {
 
 get_programs () {
 	sudo apt update -y
-	sudo apt install rxvt-unicode-256color feh xinit vim lxappearance x11-xserver-utils pulseaudio curl mpd mpc ncmpcpp firefox-esr xinput python3-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler gparted mercurial python-dev python3-dev ruby ruby-dev libx11-dev libxt-dev libncurses5 ncurses-dev -y
+	sudo apt install rxvt-unicode-256color feh xinit vim lxappearance x11-xserver-utils pulseaudio curl mpd mpc ncmpcpp firefox-esr xinput python3-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler gparted mercurial python-dev python3-dev ruby ruby-dev libx11-dev libxt-dev libncurses5 ncurses-dev wmaker -y
     sudo apt purge youtube-dl
 	sudo pip3 install pywal
 }
