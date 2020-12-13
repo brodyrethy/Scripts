@@ -10,8 +10,8 @@
 #
 # Description:
 # BPISA is a post-installation script to set up Arch Linux.
-# In this case, i3wm is the wm installed. The configs used
-# are the ones I've made over the years.
+# In this case, dwm is the wm installed. The configs used
+# are the ones I've made and used over the years.
 #
 
 get_dotfiles () {
