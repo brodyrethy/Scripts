@@ -16,15 +16,14 @@ def main():
     if (check_for_config == False):
         chat_serv_ip_addr = input("Server IP address: ")
         chat_serv_username = input("Server SSH user: ")
+        chat_serv_password = input("Server SSH user: ")
         make_configs(chat_serv_ip_addr, chat_serv_username)
 
     their_file = ""
     while True:
         ssh = paramiko.SSHClient()
-        k = paramiko.RSAKey.from_private_key_file("~/.ssh/")
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(chat_serv_ip_addr, username=chat_serv_username, pkey=k)
-        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(cmd_to_execute)
+        ssh.connect(chat_serv_ip_addr, username=chat_serv_username, password=chat_serv_password)
+        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("echo " + their_file)
         
         if (stdin != their_file):
             print(file_contents)
