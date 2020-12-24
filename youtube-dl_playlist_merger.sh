@@ -1,3 +1,4 @@
+# this script skips pre-existing songs in a directory
 printf "Insert the playlist URL: "
 read URL
 
