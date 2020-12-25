@@ -5,7 +5,7 @@ def main():
     username = get_system_username()
     all_files = []
 
-    paths = ["anime", "architecture", "art", "city", "computer", "fractals", "game", "landscape", "music", "psy", "space"]
+    paths = ["anime", "architecture", "art", "city", "computer", "fractals", "game", "landscape", "music", "psy", "space", "math"]
     sub_folder = random.choice(paths)
 
     path = "/home/" + username + "/1TBDrive/pictures/wallpapers/" + sub_folder + "/"

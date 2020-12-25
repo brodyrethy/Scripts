@@ -1,6 +1,12 @@
+#!/usr/bin/python3
+import readline
+
 def main():
     words = input("Insert title: ")
     words = words.split(" ")
+
+    # separator
+    print("")
 
     for x in words:
         word = x.lower()
@@ -8,5 +14,7 @@ def main():
             print(word.lower(), end=" ")
         else:
             print(word.capitalize(), end=" ")
+
+    input("\n\nPress Enter to close")
 
 main()
