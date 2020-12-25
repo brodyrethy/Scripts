@@ -1,3 +1,5 @@
+# this thing is currently broken... i'll fix it someday
+
 import re, requests, time, os
 from requests_html import HTMLSession
 
@@ -35,8 +37,8 @@ def main():
     if (os.path.isfile("photo_counter.txt") == False):
         photo_counter = 0
     else:
-        fo = open("photo_counter.txt", "r")
-        photo_counter = fo.read()
+        f = open("photo_counter.txt", "r")
+        photo_counter = f.read()
 
     while (True):
         user_input = input("Insert the URL of the 4chan thread you'd like to download from (Press Return to quit): ")
