@@ -1,4 +1,0 @@
-cd /mnt/thewired_server/500GigDrive1/GitHub\ Storage/Notes
-git add .
-git commit -m "Auto commit message"
-git push

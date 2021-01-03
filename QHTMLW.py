@@ -1,3 +1,7 @@
+#TODO: this program is redundancy hell, clean this up
+#TODO: this program is redundancy hell, clean this up
+#TODO: this program is redundancy hell, clean this up
+
 import os
 from sys import platform
 

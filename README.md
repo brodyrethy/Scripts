@@ -1,8 +1,8 @@
 # Scripts
-## Synopsis
-Various scripts I've written over the years to do various things. Some scripts may be useless to most, some scripts may be useful to some.
+Various scripts I've written over the years to do various things.
+Some scripts may be totally useless to anyone who isn't me.
+
+This repository is mostly just a backup of my scripts.
  
 ## TODO
-- [ ] Switch ALL if statements to switch case statements
-- [ ] 4chan_media_scraper: Fetch counter start number from file at start
-- [ ] 4chan_media_scraper: Write counter end number to file upon close
+- [ ] Merge all BASH server backup scripts into a single Python script with a numbered selection menu

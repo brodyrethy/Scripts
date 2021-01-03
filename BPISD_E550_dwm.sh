@@ -1,17 +1,10 @@
 #!/bin/bash
-#
-# BPISD for E550s: dwm Edition
 #  _____
 # |  __ \  GitHub: https://github.com/brodyrethy
 # | |__) | 
 # |  _  /  
 # | | \ \  
 # |_|  \_\ Website: https://rethy.xyz
-#
-# Description:
-# BPISD is a post-installation script to set up Debian 9/10.
-# In this case, i3wm is the wm installed. The configs used
-# are the ones I've made over the years.
 #
 
 get_dotfiles () {
@@ -65,61 +58,58 @@ echo_data () {
 	#rc.conf
 	echo "" >> ~/.config/ranger/rc.conf
 	echo "#Changing directories" >> ~/.config/ranger/rc.conf
-	echo "map gM cd ~/1TBDrive/Music" >> ~/.config/ranger/rc.conf
-	echo "map gb cd ~/1TBDrive/Books" >> ~/.config/ranger/rc.conf
-	echo "map gl cd ~/1TBDrive/LaTeX" >> ~/.config/ranger/rc.conf
-	echo "map ghh cd ~/1TBDrive/GitHub" >> ~/.config/ranger/rc.conf
-	echo "map gp cd ~/1TBDrive/Pictures" >> ~/.config/ranger/rc.conf
-	echo "map gP cd ~/1TBDrive/Programming" >> ~/.config/ranger/rc.conf
-	echo "map gv cd ~/1TBDrive/Visual Media" >> ~/.config/ranger/rc.conf
-	echo "map ghs cd ~/1TBDrive/GitHub Storage" >> ~/.config/ranger/rc.conf
-	echo "map gw cd ~/1TBDrive/Pictures/Wallpapers" >> ~/.config/ranger/rc.conf
-	echo "map gm cd ~/1TBDrive/Visual Media/Movies" >> ~/.config/ranger/rc.conf
-	echo "map gn cd ~/1TBDrive/GitHub Storage/Notes" >> ~/.config/ranger/rc.conf
+	echo "map gM cd ~/1TBDrive/music" >> ~/.config/ranger/rc.conf
+	echo "map gb cd ~/1TBDrive/books" >> ~/.config/ranger/rc.conf
+	echo "map gl cd ~/1TBDrive/latex" >> ~/.config/ranger/rc.conf
+	echo "map ghh cd ~/1TBDrive/github" >> ~/.config/ranger/rc.conf
+	echo "map gp cd ~/1TBDrive/pictures" >> ~/.config/ranger/rc.conf
+	echo "map gP cd ~/1TBDrive/programming" >> ~/.config/ranger/rc.conf
+	echo "map gv cd ~/1TBDrive/visual media" >> ~/.config/ranger/rc.conf
+	echo "map ghs cd ~/1TBDrive/github_storage" >> ~/.config/ranger/rc.conf
+	echo "map gw cd ~/1TBDrive/pictures/wallpapers" >> ~/.config/ranger/rc.conf
+	echo "map gm cd ~/1TBDrive/visual media/movies" >> ~/.config/ranger/rc.conf
+	echo "map gn cd ~/1TBDrive/github storage/notes" >> ~/.config/ranger/rc.conf
 	echo "map gho cd ~" >> ~/.config/ranger/rc.conf
-	echo "map gd cd ~/Downloads" >> ~/.config/ranger/rc.conf
-	echo "map gD cd ~/Documents" >> ~/.config/ranger/rc.conf
+	echo "map gd cd ~/downloads" >> ~/.config/ranger/rc.conf
+	echo "map gD cd ~/documents" >> ~/.config/ranger/rc.conf
 	echo "map gMn cd /mnt" >> ~/.config/ranger/rc.conf
 	#.bash_aliases
-	echo "alias gM='cd ~/1TBDrive/Music'" >> ~/.bash_aliases
-	echo "alias gb='cd ~/1TBDrive/Books'" >> ~/.bash_aliases
-	echo "alias gl='cd ~/1TBDrive/LaTeX'" >> ~/.bash_aliases
-	echo "alias ghh='cd ~/1TBDrive/GitHub'" >> ~/.bash_aliases
-	echo "alias gp='cd ~/1TBDrive/Pictures'" >> ~/.bash_aliases
-	echo "alias gP='cd ~/1TBDrive/Programming'" >> ~/.bash_aliases
-	echo "alias gv='cd ~/1TBDrive/Visual Media'" >> ~/.bash_aliases
-	echo "alias ghs='cd ~/1TBDrive/GitHub Storage'" >> ~/.bash_aliases
-	echo "alias gw='cd ~/1TBDrive/Pictures/Wallpapers'" >> ~/.bash_aliases
-	echo "alias gm='cd ~/1TBDrive/Visual Media/Movies'" >> ~/.bash_aliases
-	echo "alias gn='cd ~/1TBDrive/GitHub Storage/Notes'" >> ~/.bash_aliases
+	echo "alias gM='cd ~/1TBDrive/music'" >> ~/.bash_aliases
+	echo "alias gb='cd ~/1TBDrive/books'" >> ~/.bash_aliases
+	echo "alias gl='cd ~/1TBDrive/latex'" >> ~/.bash_aliases
+	echo "alias ghh='cd ~/1TBDrive/github'" >> ~/.bash_aliases
+	echo "alias gp='cd ~/1TBDrive/pictures'" >> ~/.bash_aliases
+	echo "alias gP='cd ~/1TBDrive/programming'" >> ~/.bash_aliases
+	echo "alias gv='cd ~/1TBDrive/visual media'" >> ~/.bash_aliases
+	echo "alias ghs='cd ~/1TBDrive/github storage'" >> ~/.bash_aliases
+	echo "alias gw='cd ~/1TBDrive/pictures/wallpapers'" >> ~/.bash_aliases
+	echo "alias gm='cd ~/1TBDrive/visual media/movies'" >> ~/.bash_aliases
+	echo "alias gn='cd ~/1TBDrive/notes'" >> ~/.bash_aliases
 	echo "alias gMn='cd /mnt/thewired_server'"
 	echo "alias g1tb='cd ~/1TBDrive'"
 	echo "alias crt='xrandr && xrandr --output DP-2 --mode 1024x768 --rate 85 --right-of eDP-1'"
 	echo "alias crt0='xrandr && xrandr --output DP-2 --mode 1024x768 --rate 85.00 --right-of eDP-1'"
 	echo "alias dcrt='xrandr --output DP-2 --off'"
-	echo "alias gre='cd ~/1TBDrive/GitHub/rethy.xyz'"
+	echo "alias gre='cd ~/1TBDrive/github/rethy.xyz'"
 	echo "alias sshac='ssh lowlife@45.79.250.220'"
-	echo "alias tott='cd ~/1TBDrive/ToolsOfTheTrade'"
-	echo "alias torb='cd ~/1TBDrive/ToolsOfTheTrade/tor-browser_en-US/'"
+	echo "alias tott='cd ~/1TBDrive/toolsofthetrade'"
+	echo "alias torb='cd ~/1TBDrive/toolsofthetrade/tor-browser_en-US/'"
 	echo "alias sonic='xrandr && xrandr --output DP-2 --mode 1920x1080 --rate 60 --right-of eDP-1'"
 	echo "alias dsonic='xrandr --output DP-2 --off'"
 	#.xinitrc
 	echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad'" >> ~/.xinitrc
-	echo "~/Scripts/dwmbar_e550 &" >> ~/.xinitrc
+	echo "~/Scripts/dwmbar_e550.sh &" >> ~/.xinitrc
 	echo "" >> ~/.xinitrc
 	echo "exec dwm" >> ~/.xinitrc
 	#.vimrc
-	echo ":map <leader>ghh :e ~/1TBDrive/GitHub<CR>" >> ~/.vimrc
-	echo ":map <leader>ghs :e ~/1TBDrive/GitHub<CR>" >> ~/.vimrc
-	echo ":map <leader>gre :e ~/1TBDrive/GitHub/rethy.xyz<CR>" >> ~/.vimrc
-	echo ":map <leader>t :e ~/1TBDrive/GitHub\ Storage/Notes/TODO.md<CR>" >> ~/.vimrc
-	echo "let g:vimwiki_list = [{'path': '~/1TBDrive/GitHub Storage/Notes', 'syntax': 'markdown', 'ext': 'md'}]" >> ~/.vimrc
+
+	echo "let g:vimwiki_list = [{'path': '~/1TBDrive/notes'}]" >> ~/.vimrc
 	echo ":map <leader>h :e /home/$USER<CR>"
 }
 
 get_programs () {
     sudo apt update
-    sudo apt install ranger firmware-iwlwifi network-manager feh xinit vim lxappearance x11-xserver-utils pulseaudio curl mpd mpc ncmpcpp firefox-esr xinput python3-pip mpv imagemagick remmina irssi calcurse newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler gparted libax25-dev libukwm-1-dev python3-pip mercurial python-dev python3-dev ruby ruby-dev libx11-dev libxt-dev libncurses5 ncurses-dev suckless-tools rsync pulsemixer sshfs -y
+    sudo apt install ranger firmware-iwlwifi network-manager feh xinit vim lxappearance x11-xserver-utils pulseaudio curl mpd mpc ncmpcpp firefox-esr xinput python3-pip mpv imagemagick irssi calcurse newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler gparted libax25-dev libukwm-1-dev python3-pip mercurial python-dev python3-dev ruby ruby-dev libx11-dev libxt-dev libncurses5 ncurses-dev suckless-tools rsync pulsemixer sshfs compton -y
     sudo apt purge youtube-dl
     sudo pip3 install youtube-dl
 }

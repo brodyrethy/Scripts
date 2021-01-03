@@ -1,4 +1,6 @@
 #!/bin/bash
+#TODO: clean this up
+#TODO: reduce redundancy
 #TODO: Most if statements should be converted to case statements at some point
 
 write_tag_to_file () {

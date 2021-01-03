@@ -8,11 +8,7 @@
 # | | \ \  
 # |_|  \_\ Website: https://rethy.xyz
 #
-# Description:
-# BPISD_e550_i3 is a post-installation script to set up Debian 9/10.
-# In this case, i3wm is the wm installed. The configs used 
-# are the ones I've made and have used over the years.
-#
+#TODO: currently incomplete, fix
 
 get_dotfiles () {
     git clone https://github.com/brodyrethy/dotfiles ~/dotfiles
