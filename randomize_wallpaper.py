@@ -5,7 +5,7 @@ def main():
     username = get_system_username()
     all_files = []
 
-    paths = ["architecture", "art", "city", "computer", "fractals", "game", "landscape", "music", "psy", "space", "math", "orthodoxy"]
+    paths = ["architecture", "painting", "city", "computer", "fractals", "game", "landscape", "music", "psy", "space", "math", "orthodoxy"]
 
     sub_folder = random.choice(paths)
 
@@ -16,7 +16,7 @@ def main():
 
     wallpaper = random.choice(all_files)
 
-    os.system("feh --bg-fill " + path + str(wallpaper))
+    os.system("wal -i " + path + str(wallpaper))
 
 def files(path):
     for x in os.listdir(path):

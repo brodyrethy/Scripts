@@ -65,36 +65,36 @@ echo_data () {
 	#rc.conf
 	echo "" >> ~/.config/ranger/rc.conf
 	echo "#Changing directories" >> ~/.config/ranger/rc.conf
-	echo "map gM cd ~/1TBDrive/Music" >> ~/.config/ranger/rc.conf
-	echo "map gb cd ~/1TBDrive/Books" >> ~/.config/ranger/rc.conf
-	echo "map gl cd ~/1TBDrive/LaTeX" >> ~/.config/ranger/rc.conf
-	echo "map ghh cd ~/1TBDrive/GitHub" >> ~/.config/ranger/rc.conf
-	echo "map gp cd ~/1TBDrive/Pictures" >> ~/.config/ranger/rc.conf
-	echo "map gP cd ~/1TBDrive/Programming" >> ~/.config/ranger/rc.conf
-	echo "map gv cd ~/1TBDrive/Visual Media" >> ~/.config/ranger/rc.conf
-	echo "map ghs cd ~/1TBDrive/GitHub Storage" >> ~/.config/ranger/rc.conf
-	echo "map gw cd ~/1TBDrive/Pictures/Wallpapers" >> ~/.config/ranger/rc.conf
-	echo "map gm cd ~/1TBDrive/Visual Media/Movies" >> ~/.config/ranger/rc.conf
-	echo "map gn cd ~/1TBDrive/GitHub Storage/Notes" >> ~/.config/ranger/rc.conf
+	echo "map gM cd ~/1TBDrive/music" >> ~/.config/ranger/rc.conf
+	echo "map gb cd ~/1TBDrive/books" >> ~/.config/ranger/rc.conf
+	echo "map gl cd ~/1TBDrive/latex" >> ~/.config/ranger/rc.conf
+	echo "map ghh cd ~/1TBDrive/github" >> ~/.config/ranger/rc.conf
+	echo "map gp cd ~/1TBDrive/pictures" >> ~/.config/ranger/rc.conf
+	echo "map gP cd ~/1TBDrive/programming" >> ~/.config/ranger/rc.conf
+	echo "map gv cd ~/1TBDrive/visual media" >> ~/.config/ranger/rc.conf
+	echo "map ghs cd ~/1TBDrive/github storage" >> ~/.config/ranger/rc.conf
+	echo "map gw cd ~/1TBDrive/pictures/wallpapers" >> ~/.config/ranger/rc.conf
+	echo "map gm cd ~/1TBDrive/visual media/movies" >> ~/.config/ranger/rc.conf
+	echo "map gn cd ~/1TBDrive/github storage/notes" >> ~/.config/ranger/rc.conf
 	echo "map gho cd ~" >> ~/.config/ranger/rc.conf
-	echo "map gd cd ~/Downloads" >> ~/.config/ranger/rc.conf
-	echo "map gD cd ~/Documents" >> ~/.config/ranger/rc.conf
+	echo "map gd cd ~/downloads" >> ~/.config/ranger/rc.conf
+	echo "map gD cd ~/documents" >> ~/.config/ranger/rc.conf
 	echo "map gMn cd /mnt" >> ~/.config/ranger/rc.conf
 
 	#.bash_aliases
 	echo "" >> ~/.bash_aliases
 	echo "#Changing directories" >> ~/.bash_aliases
-	echo "alias gM='cd ~/1TBDrive/Music'" >> ~/.bash_aliases
-	echo "alias gb='cd ~/1TBDrive/Books'" >> ~/.bash_aliases
-	echo "alias gl='cd ~/1TBDrive/LaTeX'" >> ~/.bash_aliases
-	echo "alias ghh='cd ~/1TBDrive/GitHub'" >> ~/.bash_aliases
-	echo "alias gp='cd ~/1TBDrive/Pictures'" >> ~/.bash_aliases
-	echo "alias gP='cd ~/1TBDrive/Programming'" >> ~/.bash_aliases
-	echo "alias gv='cd ~/1TBDrive/Visual Media'" >> ~/.bash_aliases
-	echo "alias ghs='cd ~/1TBDrive/GitHub Storage'" >> ~/.bash_aliases
-	echo "alias gw='cd ~/1TBDrive/Pictures/Wallpapers'" >> ~/.bash_aliases
-	echo "alias gm='cd ~/1TBDrive/Visual Media/Movies'" >> ~/.bash_aliases
-	echo "alias gn='cd ~/1TBDrive/GitHub Storage/Notes'" >> ~/.bash_aliases
+	echo "alias gM='cd ~/1TBDrive/music'" >> ~/.bash_aliases
+	echo "alias gb='cd ~/1TBDrive/books'" >> ~/.bash_aliases
+	echo "alias gl='cd ~/1TBDrive/latex'" >> ~/.bash_aliases
+	echo "alias ghh='cd ~/1TBDrive/github'" >> ~/.bash_aliases
+	echo "alias gp='cd ~/1TBDrive/pictures'" >> ~/.bash_aliases
+	echo "alias gP='cd ~/1TBDrive/programming'" >> ~/.bash_aliases
+	echo "alias gv='cd ~/1TBDrive/visual media'" >> ~/.bash_aliases
+	echo "alias ghs='cd ~/1TBDrive/github storage'" >> ~/.bash_aliases
+	echo "alias gw='cd ~/1TBDrive/pictures/wallpapers'" >> ~/.bash_aliases
+	echo "alias gm='cd ~/1TBDrive/visual media/movies'" >> ~/.bash_aliases
+	echo "alias gn='cd ~/1TBDrive/github storage/notes'" >> ~/.bash_aliases
 
 	#.xinitrc
 	echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad' &" >> ~/.xinitrc
@@ -102,7 +102,7 @@ echo_data () {
 	echo "exec i3" >> ~/.xinitrc
 
 	#.vimrc
-	echo "let g:vimwiki_list = [{'path': '~/1TBDrive/GitHub Storage/Notes'}]" >> ~/.vimrc
+	echo "let g:vimwiki_list = [{'path': '~/1TBDrive/github storage/Notes'}]" >> ~/.vimrc
 }
 
 get_programs () {
