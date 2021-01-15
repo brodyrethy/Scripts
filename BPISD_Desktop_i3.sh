@@ -1,67 +1,44 @@
 #!/bin/bash
-#
-# BPISD for Desktopss: dwm Edition
-#  _____
-# |  __ \  GitHub: https://github.com/brodyrethy
-# | |__) | 
-# |  _  /  
-# | | \ \  
-# |_|  \_\ Website: https://rethy.xyz
-#
-# Description:
-# BPISD is a post-installation script to set up Debian 9/10.
-# In this case, i3wm is the wm installed. The configs used
-# are the ones I've made over the years.
-#
 
-create_dirs_and_files () {
+create_dirs_and_files() {
 	sudo mkdir -p /mnt/thewired_server
+	sudo mkdir -p ~/.vim/undodir
 	sudo mkdir -p ~/.config
 	sudo mkdir -p ~/.config/mpc
 	sudo mkdir -p ~/.config/mpd/playlists
-
-	sudo touch ~/.config/mpd/mpd.db
-	sudo touch ~/.config/mpd/mpd.log
 }
 
-move_dirs_and_files () {
-	#Move i3 desktop config to i3 dir
+move_dirs_and_files() {
+	# move i3 desktop config to i3 dir
 	cp /home/$USER/dotfiles/.config/config_desktop /home/$USER/dotfiles/.config/i3/config 
-	#To ~/.config/...
+	# to ~/.config/
 	sudo cp -R /home/$USER/dotfiles/.config/i3 /home/$USER/.config
 	sudo cp -R /home/$USER/dotfiles/.config/mpd /home/$USER/.config
 	sudo cp -R /home/$USER/dotfiles/.config/ranger /home/$USER/.config
 	sudo cp -R /home/$USER/dotfiles/.config/ncmpcpp /home/$USER/.config
 	sudo cp -R /home/$USER/dotfiles/.config/i3blocks /home/$USER/.config
-	#To /etc/...
+	# to /etc/
 	sudo cp /home/$USER/dotfiles/.config/grub /etc/default/
 	sudo cp /home/$USER/dotfiles/.config/inputrc /etc/
 	sudo cp /home/$USER/dotfiles/.config/sources.list /etc/apt/
+	sudo cp /home/$USER/dotfiles/.config/nobeep.conf /etc/modprobe.d/
+	sudo cp /home/$USER/dotfiles/.config/pulseaudio.service /etc/systemd/system/
+
 	sudo cp /home/$USER/dotfiles/.config/.Xdefaults /home/$USER/
 	sudo cp /home/$USER/dotfiles/.config/.vimrc /home/$USER/
 	sudo cp /home/$USER/dotfiles/.config/.bashrc /home/$USER/
 	sudo cp /home/$USER/dotfiles/.config/.xinitrc_desktop_i3 /home/$USER/.xinitrc
 	sudo cp /home/$USER/dotfiles/.config/.bash_aliases /home/$USER/
 	sudo cp /home/$USER/dotfiles/.config/.bash_profile /home/$USER/
-	sudo cp /home/$USER/dotfiles/.config/nobeep.conf /etc/modprobe.d/
-	sudo cp /home/$USER/dotfiles/.config/pulseaudio.service /etc/systemd/system/
 }
 
-get_programs () {
+get_programs() {
 	sudo apt update -y
-	sudo apt install i3 i3blocks ranger rxvt-unicode-256color feh xinit vim lxappearance x11-xserver-utils pulseaudio curl mpd mpc ncmpcpp firefox-esr xinput python3-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler gparted nvidia-driver mercurial python-dev python3-dev ruby ruby-dev libx11-dev libxt-dev libncurses5 ncurses-dev -y
+	sudo apt install i3 i3blocks ranger rxvt-unicode-256color feh xinit vim lxappearance x11-xserver-utils pulseaudio curl mpd mpc ncmpcpp firefox-esr xinput python3-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler gparted nvidia-driver mercurial python-dev python3-dev ruby ruby-dev libx11-dev libxt-dev libncurses5 ncurses-dev texlive-full -y
 	sudo pip3 install pywal
-
-	echo "Do you want to install texlive-full? (0 or 1)"
-	read answer
-
-	if [$answer == 1]
-	then
-		sudo apt install texlive-full -y
-	fi
 }
 
-get_vim-py3 () {
+get_vim-py3() {
 	git clone https://github.com/vim/vim ~/vim
 	cd ~/vim
 	./configure \
@@ -82,7 +59,7 @@ get_vim-py3 () {
 	sudo ln -s /opt/vim74/bin/vim /usr/bin/vim-py3
 }
 
-get_and_enable_bitmap_fonts () {
+get_and_enable_bitmap_fonts() {
 	git clone https://github.com/Tecate/bitmap-fonts.git ~/bitmap-fonts
 	cd ~/bitmap-fonts
 	sudo cp -avr bitmap/ /usr/share/fonts
@@ -95,37 +72,30 @@ get_and_enable_bitmap_fonts () {
 	sudo dpkg-reconfigure fontconfig
 }
 
-get_vim_plug () {
+get_vim_plug() {
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
-get_i3_gaps_deb () {
-	git clone https://github.com/maestrogerardo/i3-gaps-deb ~/i3-gaps-deb
-	~/i3-gaps-deb/i3-gaps-deb
-}
-
-enable_services () {
+enable_services() {
 	sudo systemctl enable pulseaudio
 	sudo systemctl enable mpd
 }
 
-update_grub2 () {
-	#Update grub
+update_grub2() {
 	sudo update-grub2
 }
 
-remove_nano () {
-	#The most important step
+rm_programs() {
+	# the most important step
 	sudo apt purge nano -y && sudo apt remove nano -y
 }
 
-
-chown_home () {
+chown_home() {
 	sudo chown $USER:$USER -R ~
 }
 
-main () {
+main() {
 	chown_home
 	create_dirs_and_files
 	move_dirs_and_files
@@ -133,11 +103,12 @@ main () {
 	get_vim-py3
 	get_and_enable_bitmap_fonts
 	get_vim_plug
-	get_i3_gaps_deb
 	enable_services
 	update_grub2
-	remove_nano
+	rm_programs
 	chown_home
+
+	/home/$USER/scripts/convert_configs_for_device.py "desktop"
 }
 
 main

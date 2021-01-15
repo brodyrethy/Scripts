@@ -1,13 +1,4 @@
 #!/bin/bash
-#
-# BPISD for ThinkPad E550s: i3 Edition
-#  _____
-# |  __ \  GitHub: https://github.com/rethyxyz
-# | |__) | 
-# |  _  /  
-# | | \ \  
-# |_|  \_\ Website: https://rethy.xyz
-#
 #TODO: currently incomplete, fix
 
 get_dotfiles () {
