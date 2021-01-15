@@ -2,7 +2,7 @@
 import sys, getpass
 
 def main():
-    files = [".config/ranger/rc.conf", ".config/mpd/mpd.conf", ".config/ncmpcpp/config", ".bash_aliases"]
+    files = [".config/ranger/rc.conf", ".config/mpd/mpd.conf", ".config/ncmpcpp/config", ".bash_aliases", ".vimrc"]
 
     username = get_username()
     
