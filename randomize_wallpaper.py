@@ -24,7 +24,7 @@ def main():
         path = "/home/" + username + "/500GigDrive1/pictures/wallpapers/" + sub_folder + "/"
     else:
         quit(":: insert your device")
-    
+
     for x in files(path):
         all_files.append(x)
 

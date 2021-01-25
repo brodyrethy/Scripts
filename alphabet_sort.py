@@ -3,7 +3,7 @@ import sys
 
 def main():
     words = str(sys.argv)
-    
+
     words = words.split(",")
 
     # remove first list item (file name)
@@ -15,5 +15,5 @@ def main():
         print(x)
 
     print("\n")
-        
+
 main()
