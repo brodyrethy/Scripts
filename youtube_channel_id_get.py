@@ -13,7 +13,6 @@ def main():
 
     print(url)
 
-
 def get_web_content(URL):
     response = urllib.request.urlopen(URL)
     web_content = response.read().decode('utf-8').replace("\n", "")
