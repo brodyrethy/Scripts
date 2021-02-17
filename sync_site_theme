@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+import os, sys
+
+dirs = ["computing", "geography", "literature", "programming", "working_on", "history", "music", "my_life", "visual_media"]
+
+device = sys.argv[1]
+device = device.lower()
+
+if (device == "desktop"):
+    device = "500GigDrive1"
+elif (device == "laptop"):
+    device = "1TBDrive"
+else:
+    sys.exit(":: device does not exist")
+
+for dir in dirs:
+    print("cp ~/" + device + "/github/rethy.xyz/style.css ~/" + device + "/github/rethy.xyz/" + dir + "/style.css")
+    os.system("cp ~/" + device + "/github/rethy.xyz/style.css ~/" + device + "/github/rethy.xyz/" + dir + "/style.css")
