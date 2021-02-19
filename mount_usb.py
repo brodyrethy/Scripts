@@ -2,10 +2,9 @@
 import os
 
 def main():
-    print("###---MOUNT USB---###\n")
     os.system("lsblk")
 
-    drive_letter = get_input("\ndrive to mount (/dev/sd?? format): ")
+    drive_letter = get_input("drive to mount (/dev/sd?? format): ")
     mount_point = get_input("mount point: ")
 
     os.system("sudo mount " + drive_letter + " " + mount_point)

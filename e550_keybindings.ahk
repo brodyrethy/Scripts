@@ -45,7 +45,7 @@
 ;<#<^s::Run C:\Program Files (x86)\SoulseekQt\SoulseekQT.exe
 ;<#!s::Run C:\Program Files (x86)\SoulseekQt\SoulseekQT.exe
 ;;t
-<#t::Run C:\tools\vim\vim82\gvim.exe "Y:/notes/TODO.wiki"
+<#t::Run C:\tools\vim\vim82\gvim.exe "Y:/GitHub Storage/Notes/TODO.wiki"
 ;;u
 ;;v
 <#v::Run C:\tools\vim\vim82\gvim.exe

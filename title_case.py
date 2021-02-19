@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import readline
 
 def main():
     counter = 0

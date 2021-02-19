@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 #Restarts a service from the command line (Windows)
 
 def main():

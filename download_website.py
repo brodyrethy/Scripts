@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 #TODO: complete this
 
 #!/usr/bin/python3

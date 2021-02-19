@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+import os, sys
+
+dirs = ["computing", "geography", "literature", "programming", "working_on", "history", "music", "my_life", "visual_media"]
+
+device = sys.argv[1]
+device = device.lower()
+
+if (device == "desktop"):
+    device = "y"
+elif (device == "laptop"):
+    device = "z"
+else:
+    sys.exit(":: device does not exist")
+
+for dir in dirs:
+    os.system("cp /mnt/" + device + "/github/rethy.xyz/style.css /mnt/" + device + "/github/rethy.xyz/" + dir + "/style.css")
+    print("cp /mnt/" + device + "/github/rethy.xyz/style.css /mnt/" + device + "/github/rethy.xyz/" + dir + "/style.css")
