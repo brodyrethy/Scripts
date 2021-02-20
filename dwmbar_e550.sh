@@ -51,7 +51,7 @@ separator(){
 while true
 do
 
-	xsetroot -name "$(print_mpd_time) $(print_mpd)$(separator)$(print_volume)$(separator)$(print_mem)$(separator)$(print_temp)$(separator)$(print_bat)$(separator)$(print_date)"
+	xsetroot -name "$(print_mpd_time) $(print_mpd)$(separator)$(print_volume)$(separator)$(print_mem)$(separator)$(print_wifi)$(separator)$(print_bat)$(separator)$(print_date)"
 
 	sleep 1
 
