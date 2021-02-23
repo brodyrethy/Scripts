@@ -6,14 +6,27 @@ git clone https://github.com/rethyxyz/dotfiles ~/dotfiles
 # Set proper permissions
 sudo chown $USER:wheel -R ~
 
+sudo chown -R brody:wheel /etc/inputrc
+sudo chown -R brody:wheel /etc/modprobe.d/nobeep.conf
+sudo chown -R brody:wheel /etc/systemd/system/pulseaudio.service
+
+sudo chmod 755 /etc/inputrc 
+sudo chmod 755 /etc/modprobe.d/nobeep.conf
+sudo chmod 755 /etc/systemd/system/pulseaudio.service
 
 
-# Mkdirs
+
+
+# Mk files and dirs
 sudo mkdir -p ~/.fonts
 sudo mkdir -p ~/1TBDrive
 sudo mkdir -p ~/.vim/undodir
+sudo mkdir -p ~/.config/mpd/playlists
 sudo mkdir -p ~/.Trash/files
 sudo mkdir -p /mnt/
+
+sudo touch /etc/modprobe.d/nobeep.conf
+sudo touch /etc/systemd/system/pulseaudio.service
 
 
 
@@ -44,14 +57,6 @@ ln -sf ~/1TBDrive/vids ~/vids
 
 
 # echo data into files
-## set perms
-sudo chown -R brody:wheel /etc/inputrc 
-sudo chown -R brody:wheel /etc/modprobe.d/nobeep.conf
-sudo chown -R brody:wheel /etc/systemd/system/pulseaudio.service
-sudo chmod 755 /etc/inputrc 
-sudo chmod 755 /etc/modprobe.d/nobeep.conf
-sudo chmod 755 /etc/systemd/system/pulseaudio.service
-
 ## .xinitrc
 echo "setxkbmap -option caps:escape &" > ~/.xinitrc
 echo "xset r rate 200 50 &" >> ~/.xinitrc
@@ -81,16 +86,13 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> /etc/syst
 
 
 # Install programs
-sudo pacman -Syu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix ntfs-3g -y
+sudo pacman -Syu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix ranger -y
 sudo pip3 install youtube-dl ueberzug
 
 git clone https://github.com/ranger/ranger ~/ranger
 cd ~/ranger
 sudo make clean install
 
-
-
-# Vim with py3 interpreter
 git clone https://github.com/vim/vim ~/vim
 cd ~/vim
 ./configure --enable-perlinterp --enable-python3interp --enable-rubyinterp --enable-cscope --enable-gui=auto --enable-gtk2-check --enable-gnome-check --with-features=huge --enable-multibyte --with-x --with-compiledby='xorpd' --with-python3-config-dir=/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu --prefix=/opt/vim74
@@ -125,6 +127,8 @@ cd ~/.config/st && sudo make clean install
 
 
 sudo chown $USER:wheel -R /sys/class/backlight/intel_backlight/brightness
+
+sudo chmod 777 /sys/class/backlight/intel_backlight/brightness
 
 
 
