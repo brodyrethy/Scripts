@@ -1,8 +1,9 @@
-# Scripts
-Various scripts I've written over the years to do various things.
-Some scripts may be totally useless to anyone who isn't me.
+# scripts
+Some scripts for (Arch) Linux I've written over the years. Let it be known that I use Arch btw.
 
-This repository is mostly just a backup of my scripts.
- 
-## TODO
-- [ ] Merge all BASH server backup scripts into a single Python script with a numbered selection menu
+- Brody's Post-installation Script for Arch
+- Mount LUKS USB
+- Mount USB
+- Randomize wallpaper
+- dwm status bar
+- ... And many more.

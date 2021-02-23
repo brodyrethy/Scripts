@@ -10,7 +10,7 @@ sudo chown $USER:wheel -R ~
 
 # Mkdirs
 sudo mkdir -p ~/.fonts
-sudo mkdir -p ~/1TBDrive
+sudo mkdir -p ~/500GigDrive{0,1,2,3}
 sudo mkdir -p ~/.vim/undodir
 sudo mkdir -p ~/.Trash/files
 sudo mkdir -p /mnt/
@@ -18,7 +18,7 @@ sudo mkdir -p /mnt/
 
 
 # Setup dotfiles
-sudo cp ~/dotfiles/.config/config.h_e550 ~/dotfiles/.config/dwm/config.h
+sudo cp ~/dotfiles/.config/config.h_desktop ~/dotfiles/.config/dwm/config.h
 sudo cp ~/dotfiles/.bash_aliases ~/
 sudo cp ~/dotfiles/.bash_profile ~/
 sudo cp ~/dotfiles/.vimrc ~/
@@ -35,11 +35,12 @@ sudo cp -R ~/dotfiles/.fonts ~/
 sudo cp -R ~/dotfiles/.newsboat/ ~/
 
 ## Drive shouldn't have to be mounted to make symlinks
-ln -sf ~/1TBDrive/docs ~/docs
-ln -sf ~/1TBDrive/notes ~/notes
-ln -sf ~/1TBDrive/pix ~/pix
-ln -sf ~/1TBDrive/repos ~/repos
-ln -sf ~/1TBDrive/vids ~/vids
+ln -sf ~/500GigDrive1/docs ~/docs
+ln -sf ~/500GigDrive1/notes ~/notes
+ln -sf ~/500GigDrive1/pix ~/pix
+ln -sf ~/500GigDrive1/repos ~/repos
+ln -sf ~/500GigDrive0/vids ~/vids
+ln -sf ~/500GigDrive0/music ~/music
 
 
 
@@ -48,7 +49,7 @@ ln -sf ~/1TBDrive/vids ~/vids
 echo "xsetxkbmap -option caps:escape &" > ~/.xinitrc
 echo "xset r rate 200 50 &" >> ~/.xinitrc
 echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad' &" >> ~/.xinitrc
-echo "dwmbar_e550.sh &" >> ~/.xinitrc
+echo "dwmbar_desktop.sh &" >> ~/.xinitrc
 echo "" >> ~/.xinitrc
 echo "exec dwm" >> ~/.xinitrc
 
