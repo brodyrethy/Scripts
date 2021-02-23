@@ -28,7 +28,7 @@ print_mem() {
 
 print_date(){
 	date=$(date +"%m-%d")
-	time=$(date +"%R")
+	time=$(date +"%r")
 	echo -e "$date |$time"
 }
 

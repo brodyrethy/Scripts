@@ -17,8 +17,13 @@ sudo mkdir -p /mnt/
 
 
 
-# Copy dotfiles
+# Setup dotfiles
 sudo cp ~/dotfiles/.config/config.h_e550 ~/dotfiles/.config/dwm/config.h
+sudo cp ~/dotfiles/.bash_aliases ~/
+sudo cp ~/dotfiles/.bash_profile ~/
+sudo cp ~/dotfiles/.vimrc ~/
+sudo cp ~/dotfiles/.bashrc ~/
+sudo cp ~/dotfiles/.vim/macros.vim ~/.vim/macros.vim
 
 sudo cp -R ~/dotfiles/.config/dwm ~/.config/
 sudo cp -R ~/dotfiles/.config/mpd ~/.config/
@@ -27,12 +32,14 @@ sudo cp -R ~/dotfiles/.config/qutebrowser ~/.config/
 sudo cp -R ~/dotfiles/.config/ranger ~/.config/
 sudo cp -R ~/dotfiles/.config/st ~/.config/
 sudo cp -R ~/dotfiles/.fonts ~/
+sudo cp -R ~/dotfiles/.newsboat/ ~/
 
-
-sudo cp ~/dotfiles/.bash_aliases ~/
-sudo cp ~/dotfiles/.bash_profile ~/
-sudo cp ~/dotfiles/.vimrc ~/
-sudo cp ~/dotfiles/.bashrc ~/
+## Drive shouldn't have to be mounted to make symlinks
+ln -sf ~/1TBDrive/docs ~/docs
+ln -sf ~/1TBDrive/notes ~/notes
+ln -sf ~/1TBDrive/pix ~/pix
+ln -sf ~/1TBDrive/repos ~/repos
+ln -sf ~/1TBDrive/vids ~/vids
 
 
 
@@ -66,11 +73,16 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> /etc/syst
 
 
 # Install programs
-sudo pacman -Syu ranger feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix ntfs-3g -y
-sudo pip3 install youtube-dl
+sudo pacman -Syu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix ntfs-3g -y
+sudo pip3 install youtube-dl ueberzug
+
+git clone https://github.com/ranger/ranger ~/ranger
+cd ~/ranger
+sudo make clean install
 
 
 
+# Vim with py3 interpreter
 git clone https://github.com/vim/vim ~/vim
 cd ~/vim
 ./configure --enable-perlinterp --enable-python3interp --enable-rubyinterp --enable-cscope --enable-gui=auto --enable-gtk2-check --enable-gnome-check --with-features=huge --enable-multibyte --with-x --with-compiledby='xorpd' --with-python3-config-dir=/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu --prefix=/opt/vim74
@@ -79,17 +91,22 @@ sudo ln -s /opt/vim74/bin/vim /usr/bin/vim-py3
 
 
 
+# vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 
 
+# Enable services
 sudo systemctl enable mpd
 sudo systemctl enable pulseaudio
 
 
 
-sudo apt purge nano youtube-dl -y && sudo apt remove nano youtube-dl -y
+sudo pacman -R nano youtube-dl -y
 
+
+
+# Set proper permissions
 sudo chown $USER:wheel -R ~
 
 
@@ -103,4 +120,4 @@ sudo chown $USER:wheel -R /sys/class/backlight/intel_backlight/brightness
 
 
 
-/home/$USER/scripts/convert_configs_for_device.py "laptop"
+python3 /home/$USER/scripts/convert_configs_for_device.py "laptop"
