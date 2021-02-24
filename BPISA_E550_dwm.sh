@@ -44,8 +44,16 @@ ln -sf ~/1TBDrive/vids ~/vids
 
 
 # echo data into files
+## set perms
+sudo chown -R brody:wheel /etc/inputrc 
+sudo chown -R brody:wheel /etc/modprobe.d/nobeep.conf
+sudo chown -R brody:wheel /etc/systemd/system/pulseaudio.service
+sudo chmod 755 /etc/inputrc 
+sudo chmod 755 /etc/modprobe.d/nobeep.conf
+sudo chmod 755 /etc/systemd/system/pulseaudio.service
+
 ## .xinitrc
-echo "xsetxkbmap -option caps:escape &" > ~/.xinitrc
+echo "setxkbmap -option caps:escape &" > ~/.xinitrc
 echo "xset r rate 200 50 &" >> ~/.xinitrc
 echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad' &" >> ~/.xinitrc
 echo "dwmbar_e550.sh &" >> ~/.xinitrc
