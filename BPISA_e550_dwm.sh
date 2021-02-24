@@ -16,14 +16,13 @@ sudo chmod 755 /etc/systemd/system/pulseaudio.service
 
 
 
-
 # Mk files and dirs
-sudo mkdir -p ~/.fonts
-sudo mkdir -p ~/1TBDrive
-sudo mkdir -p ~/.vim/undodir
-sudo mkdir -p ~/.config/mpd/playlists
-sudo mkdir -p ~/.Trash/files
 sudo mkdir -p /mnt/
+sudo mkdir -p ~/.Trash/files
+sudo mkdir -p ~/.config/mpd/playlists
+sudo mkdir -p ~/.fonts
+sudo mkdir -p ~/.vim/undodir
+sudo mkdir -p ~/1TBDrive
 
 sudo touch /etc/modprobe.d/nobeep.conf
 sudo touch /etc/systemd/system/pulseaudio.service
@@ -38,6 +37,7 @@ sudo cp ~/dotfiles/.vimrc ~/
 sudo cp ~/dotfiles/.bashrc ~/
 sudo cp ~/dotfiles/.vim/macros.vim ~/.vim/macros.vim
 
+sudo cp -R ~/dotfiles/.config/dunst ~/.config/
 sudo cp -R ~/dotfiles/.config/dwm ~/.config/
 sudo cp -R ~/dotfiles/.config/mpd ~/.config/
 sudo cp -R ~/dotfiles/.config/ncmpcpp ~/.config/
@@ -49,6 +49,7 @@ sudo cp -R ~/dotfiles/.newsboat/ ~/
 
 ## Drive shouldn't have to be mounted to make symlinks
 ln -sf ~/1TBDrive/docs ~/docs
+ln -sf ~/1TBDrive/music ~/music
 ln -sf ~/1TBDrive/notes ~/notes
 ln -sf ~/1TBDrive/pix ~/pix
 ln -sf ~/1TBDrive/repos ~/repos
@@ -86,7 +87,7 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> /etc/syst
 
 
 # Install programs
-sudo pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix ntfs-3g ranger -y
+sudo pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix ranger -y
 sudo pip3 install youtube-dl ueberzug
 
 git clone https://github.com/ranger/ranger ~/ranger

@@ -6,14 +6,26 @@ git clone https://github.com/rethyxyz/dotfiles ~/dotfiles
 # Set proper permissions
 sudo chown $USER:wheel -R ~
 
+sudo chown -R brody:wheel /etc/inputrc
+sudo chown -R brody:wheel /etc/modprobe.d/nobeep.conf
+sudo chown -R brody:wheel /etc/systemd/system/pulseaudio.service
+
+sudo chmod 755 /etc/inputrc 
+sudo chmod 755 /etc/modprobe.d/nobeep.conf
+sudo chmod 755 /etc/systemd/system/pulseaudio.service
 
 
-# Mkdirs
-sudo mkdir -p ~/.fonts
-sudo mkdir -p ~/500GigDrive{0,1,2,3}
-sudo mkdir -p ~/.vim/undodir
-sudo mkdir -p ~/.Trash/files
+
+# Mk files and dirs
 sudo mkdir -p /mnt/
+sudo mkdir -p ~/.Trash/files
+sudo mkdir -p ~/.config/mpd/playlists
+sudo mkdir -p ~/.fonts
+sudo mkdir -p ~/.vim/undodir
+sudo mkdir -p ~/500GigDrive{0,1,2,3}
+
+sudo touch /etc/modprobe.d/nobeep.conf
+sudo touch /etc/systemd/system/pulseaudio.service
 
 
 
@@ -25,6 +37,7 @@ sudo cp ~/dotfiles/.vimrc ~/
 sudo cp ~/dotfiles/.bashrc ~/
 sudo cp ~/dotfiles/.vim/macros.vim ~/.vim/macros.vim
 
+sudo cp -R ~/dotfiles/.config/dunst ~/.config/
 sudo cp -R ~/dotfiles/.config/dwm ~/.config/
 sudo cp -R ~/dotfiles/.config/mpd ~/.config/
 sudo cp -R ~/dotfiles/.config/ncmpcpp ~/.config/
@@ -35,12 +48,12 @@ sudo cp -R ~/dotfiles/.fonts ~/
 sudo cp -R ~/dotfiles/.newsboat/ ~/
 
 ## Drive shouldn't have to be mounted to make symlinks
+ln -sf ~/500GigDrive0/music ~/music
+ln -sf ~/500GigDrive0/vids ~/vids
 ln -sf ~/500GigDrive1/docs ~/docs
 ln -sf ~/500GigDrive1/notes ~/notes
 ln -sf ~/500GigDrive1/pix ~/pix
 ln -sf ~/500GigDrive1/repos ~/repos
-ln -sf ~/500GigDrive0/vids ~/vids
-ln -sf ~/500GigDrive0/music ~/music
 
 
 
@@ -74,16 +87,13 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> /etc/syst
 
 
 # Install programs
-sudo pacman -Syu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix ntfs-3g -y
+sudo pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix -y
 sudo pip3 install youtube-dl ueberzug
 
 git clone https://github.com/ranger/ranger ~/ranger
 cd ~/ranger
 sudo make clean install
 
-
-
-# Vim with py3 interpreter
 git clone https://github.com/vim/vim ~/vim
 cd ~/vim
 ./configure --enable-perlinterp --enable-python3interp --enable-rubyinterp --enable-cscope --enable-gui=auto --enable-gtk2-check --enable-gnome-check --with-features=huge --enable-multibyte --with-x --with-compiledby='xorpd' --with-python3-config-dir=/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu --prefix=/opt/vim74
@@ -114,10 +124,6 @@ sudo chown $USER:wheel -R ~
 
 cd ~/.config/dwm && sudo make clean install
 cd ~/.config/st && sudo make clean install
-
-
-
-sudo chown $USER:wheel -R /sys/class/backlight/intel_backlight/brightness
 
 
 
