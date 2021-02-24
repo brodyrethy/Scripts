@@ -81,7 +81,7 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> /etc/syst
 
 
 # Install programs
-sudo pacman -Syu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix ntfs-3g -y
+sudo pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix ntfs-3g -y
 sudo pip3 install youtube-dl ueberzug
 
 git clone https://github.com/ranger/ranger ~/ranger
