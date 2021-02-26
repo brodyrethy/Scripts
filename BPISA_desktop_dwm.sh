@@ -59,7 +59,8 @@ ln -sf ~/500GigDrive1/repos ~/repos
 
 # echo data into files
 ## .xinitrc
-echo "xsetxkbmap -option caps:escape &" > ~/.xinitrc
+echo "xinput --set-prop 12 'libinput Accel Speed' -1 &" > ~/.xinitrc
+echo "xsetxkbmap -option caps:escape &" >> ~/.xinitrc
 echo "xset r rate 200 50 &" >> ~/.xinitrc
 echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad' &" >> ~/.xinitrc
 echo "dwmbar_desktop.sh &" >> ~/.xinitrc
