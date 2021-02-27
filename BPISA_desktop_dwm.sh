@@ -60,10 +60,12 @@ ln -sf ~/500GigDrive1/repos ~/repos
 # echo data into files
 ## .xinitrc
 echo "xinput --set-prop 12 'libinput Accel Speed' -1 &" > ~/.xinitrc
-echo "xsetxkbmap -option caps:escape &" >> ~/.xinitrc
+echo "setxkbmap -option caps:escape &" >> ~/.xinitrc
 echo "xset r rate 200 50 &" >> ~/.xinitrc
 echo "xinput disable 'AlpsPS/2 ALPS DualPoint TouchPad' &" >> ~/.xinitrc
 echo "dwmbar_desktop.sh &" >> ~/.xinitrc
+echo "dunst &" >> ~/.xinitrc
+echo "picom &" >> ~/.xinitrc
 echo "" >> ~/.xinitrc
 echo "exec dwm" >> ~/.xinitrc
 
@@ -88,7 +90,7 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> /etc/syst
 
 
 # Install programs
-sudo pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix -y
+sudo pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp firefox python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix picom dunst libnotify -y
 sudo pip3 install youtube-dl ueberzug
 
 git clone https://github.com/ranger/ranger ~/ranger
