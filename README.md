@@ -7,3 +7,5 @@ Some scripts for (Arch) Linux I've written over the years. Let it be known that 
 - Randomize wallpaper
 - dwm status bar
 - ... And many more.
+
+Right now, scripts are written in Python, others written in Bash, but I am currently converting my Python scripts to Bash. Python is just too heavy for scripting. I'd prefer not to subject my system to that. I still like Python, but prefer to reserve it for "heavier" programming.
