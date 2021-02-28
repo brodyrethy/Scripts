@@ -32,7 +32,7 @@ PATHS=(
 ".vimrc"
 )
 
-case $1 in
+case "$1" in
 	desktop)
 		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_desktop 2> /dev/null && echo ":: Backup of config.h_desktop to ~/repos/dotfiles/.config/config.h_desktop sucessful" || echo ":: Couldn't backup config.h_desktop"
 	   	;;

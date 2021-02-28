@@ -28,10 +28,11 @@
 #
 # This ensures that the user has: 1) Created a user, and 2) is using
 # one other than root.
-#
-#		if [ ! getent group wheel | grep -q "\b${username}\b" ] #&& [ ! $USER = "root"  ]
+#								  && [ ! $USER = "root"  ]
+#		if [ ! getent group wheel | grep -q "\b${username}\b" ]
 #		then
-#			echo ""; exit 126 # TODO: I think this error code is proper? Check this later.
+#			TODO: I think this error code is proper? Check this later.
+#			echo ""; exit 126
 #		fi
 #
 # Actually, it doesn't work yet, but I'll make complete this later. For now,
@@ -41,24 +42,24 @@
 
 # Defining variables
 #
-## For getting dotfiles. As long as yours keep the same hierarchy
-## as they do in the home directory (i.e. .config/qutebrowser,~/.bash_aliases, ~/.vimrc)
-## they should work flawlessly.
+# For getting dotfiles. As long as yours keep the same hierarchy
+# as they do in the home directory (i.e. .config/qutebrowser,~/.bash_aliases,
+# ~/.vimrc) they should work flawlessly.
 URL="https://github.com/rethyxyz/dotfiles"
 
 
 
 # File/directory hierarchy setup
 echo ""; echo "## File/directory hierarchy setup"
-## Check if dir exists (I didn't break into function as it takes more code to write one over this)
+## Check if dir exists (I didn't break into function as it takes more code to
+## write one over this)
 if [ -d $PATH ]
 then
 	rm -rf ~/dotfiles && echo ":: Removed dotfiles directory" || { sudo rm -rf ~/dotfiles; echo ":: Removed dotfiles directory (used sudo)"; }
 fi
 
 ## Download dotfiles
-
-/usr/bin/git clone $URL  ~/dotfiles > /dev/null 2>&1 && echo ":: Downloaded dotfiles from $URL" || { echo ":: Failed to download dotfiles (they are important to the script)"; echo " Check Internet connection and try again"; }
+/usr/bin/git clone $URL ~/dotfiles > /dev/null 2>&1 && echo ":: Downloaded dotfiles from $URL" || { echo ":: Failed to download dotfiles (they are important to the script)"; echo " Check Internet connection and try again"; exit 1; }
 
 ## Set proper permissions
 /usr/bin/sudo chown $USER:wheel -R ~ > /dev/null 2>&1 && echo ":: Set ~/$USER to $USER:wheel ownership" || { echo ":: Couldn't set ~/$USER ownership to $USER:wheel, this could be a problem later on..."; echo "   Come back after you fix the issue."; exit 126; }
@@ -94,11 +95,11 @@ PATHS=(
 "~/.config/mpd/playlists"
 "~/.fonts"
 "~/.vim/undodir"
-"~/500GigDrive{0,1,2,3}"
+"~/500GigDrive{0,1,2,3}" # TODO: I may have to split this
 )
 for PATH in ${PATHS[@]}
 do
-	/usr/bin/sudo /usr/bin/mkdir -p $PATH || ":: Failed to make $PATH"
+	/usr/bin/sudo /usr/bin/mkdir -p $PATH && echo ":: Made $PATH" || ":: Failed to make $PATH"
 done
 
 ## copy dwm's config.h
@@ -127,7 +128,12 @@ do
 done
 
 ## Make symlinks
-PATHS=("music" "vids" "docs" "notes" "pix" "repos")
+PATHS=("music"
+"vids"
+"docs"
+"notes"
+"pix"
+"repos")
 for PATH in ${PATHS[@]}
 do
 	/usr/bin/ln -sf $PATH && echo ":: Made symlink at $PATH" || echo ":: Couldn't make symlink at $PATH"
@@ -170,15 +176,17 @@ mv ~/dotfiles/pulseaudio.service /etc/systemd/system/pulseaudio.service
 # I get the main ones from here.
 echo ""; echo "## Installing programs"
 {
-/usr/bin/sudo /usr/bin/pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix picom dunst libnotify ranger scrot picard -y
+/usr/bin/sudo /usr/bin/pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput \
+xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp \
+python3 python-pip mpv imagemagick irssi newsboat fuse cifs-utils zathura \
+zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix picom \
+dunst libnotify ranger scrot picard -y
 } > /dev/null 2>&1 && echo ":: Installed main programs" || echo ":: One or more programs failed to install from pacman"
 
 ## Ueberzug, for ranger image previews
 #
 # It's mandatory for st image previews.
-{
-/usr/bin/sudo pip3 install youtube-dl ueberzug
-} > /dev/null 2>&1 && echo ":: Installed ueberzug" || echo ":: Installed ueberzug"
+/usr/bin/sudo pip3 install youtube-dl ueberzug > /dev/null 2>&1 && echo ":: Installed ueberzug" || echo ":: Installed ueberzug"
 
 ## ranger
 #
@@ -201,14 +209,12 @@ make && /usr/bin/sudo make install
 } > /dev/null 2>&1 && echo ":: Compiled and installed vim-py3" || echo ":: Failed to install newest vim-py3"
 
 ## vim-plug
-{
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-} > /dev/null 2>&1 && echo ":: Installing vim-plug" || echo ":: Failed to install vim-plug"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim > /dev/null 2>&1 && echo ":: Installing vim-plug" || echo ":: Failed to install vim-plug"
 
 
 
 # Remove programs
-/usr/bin/sudo /usr/bin/pacman -R nano youtube-dl -y && echo ":: Removed nano, and YouTube-dl" || echo ":: Failed to remove nano, and youtube-dl, they might already be removed."
+/usr/bin/sudo /usr/bin/pacman -R nano youtube-dl -y > /dev/null 2>&1 && echo ":: Removed nano, and YouTube-dl" || echo ":: Failed to remove nano, and youtube-dl, they might already be removed."
 
 
 
@@ -236,21 +242,3 @@ python3 /home/$USER/scripts/convert_configs_for_device.py "laptop"
 
 # exit using success code
 exit 0
-
-check_if_file_exists() {
-	if [ -e $1 ]
-	then
-		echo true
-	else
-		echo false
-	fi
-}
-
-check_if_dir_exists() {
-	if [ -d $1 ]
-	then
-		echo true
-	else
-		echo false
-	fi
-}

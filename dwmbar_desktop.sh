@@ -43,9 +43,7 @@ symbol() {
 
 while true
 do
-
 	xsetroot -name "$(print_mpd_time) $(print_mpd)$(separator)$(print_volume)$(separator)$(print_mem)$(separator)$(print_wifi)$(separator)$(print_date)$(separator)$(symbol)"
 
 	sleep 1
-
 done
