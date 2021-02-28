@@ -105,7 +105,7 @@ cd ~/vim
 make && /usr/bin/sudo make install
 /usr/bin/sudo ln -s /opt/vim74/bin/vim /usr/bin/vim-py3
 ## Install vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+/usr/bin/curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Enable services
 /usr/bin/sudo systemctl enable mpd
