@@ -14,6 +14,8 @@
 #	being a desktop or laptop system, as some
 #	configs differ between system to system.
 #
+# TODO: Make dotfiles path variable
+#
 
 PATHS=(
 ".bash_aliases"
@@ -43,7 +45,7 @@ esac
 
 for PATH in ${PATHS[@]}
 do
-	/usr/bin/cp -R ~/$PATH ~/repos/dotfiles/$PATH 2> /dev/null && echo ":: Backup of $PATH to ~/repos/dotfiles/$PATH successful" || echo ":: Couldn't backup $PATH"
+	/usr/bin/cp -R ~/$PATH ~/repos/dotfiles/$PATH 2> /dev/null && echo ":: Backup of $PATH to ~/repos/dotfiles/$PATH successful" || echo ":: $PATH not found, skipping"
 done
 
 /usr/bin/rm ~/repos/dotfiles/.config/dwm/config.h 2> /dev/null
