@@ -20,27 +20,25 @@ fi
 
 
 
-# Set first arg as variable FILE 
-#
-# I'll make this more than just one arg in the future.
-#
-FILE=$1
-
-# Get date and time
-#
-# There's probably a better way to do this. It works for now.
-# I may want to refactor this later.
-#
-CURRENT_DATE_FORMAT=$(date +"%m-%d at %R" | sed -e 's/ /_/g' -e 's/-/_/g' -e 's/:/_/g')
-
-TRASH_DIR="$HOME/.Trash/files/"
-
-
-
 if [ ! -e $FILE ]
 then
 	echo ":: File given does not exist"; exit 1
 fi
+
+
+
+# Set first arg as variable FILE.
+# I'll make this more than just one arg in the future.
+FILE=$1
+# Get date and time. There's probably a better way to do this.
+# It works for now. I may want to refactor this later.
+CURRENT_DATE_FORMAT=$(date +"%m-%d at %R" | sed -e 's/ /_/g' -e 's/-/_/g' -e 's/:/_/g')
+TRASH_DIR="$HOME/.Trash/files/"
+
+
+
+# Check age of first file/dir in Trash dir
+# if older than 30 days, remove
 
 
 
