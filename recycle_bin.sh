@@ -39,6 +39,7 @@ TRASH_DIR="$HOME/.Trash/files/"
 
 # Check age of first file/dir in Trash dir
 # if older than 30 days, remove
+# TODO
 
 
 
@@ -64,7 +65,9 @@ fi
 
 
 # Move file to ~/.Trash/files
-mv -iv $FILE $TRASH_DIR
+#
+mv -iv "$FILE" $TRASH_DIR
+
 
 
 # A successful exit, it gets here
