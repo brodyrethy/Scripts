@@ -83,13 +83,12 @@ do
 	if [ ! -e $FILE ]
 	then
 		# If command fails, try sudo
-		{ /usr/bin/touch $FILE > /dev/null 2>&1 || /usr/bin/sudo /usr/bin/touch $FILE > /dev/null 2>&1 } && echo ":: Created $FILE"
+		/usr/bin/sudo /usr/bin/touch $FILE > /dev/null 2>&1 && echo ":: Created $FILE"
 	fi
 	/usr/bin/sudo chmod 777 $FILE && echo "" # rwx for everyone!
 	/usr/bin/sudo chown -R $USER:wheel $FILE && echo ":: chown $USER:wheel successful" || echo ":: chown $USER:wheel failed" # change owner and group
 done
 
-unset FILES
 ## Make dirs
 FILES=(
 "$HOME/.Trash/files"
@@ -106,7 +105,6 @@ done
 ## copy dwm's config.h
 /usr/bin/sudo /usr/bin/cp $HOME/dotfiles/.config/config.h_desktop $HOME/dotfiles/.config/dwm/config.h
 
-unset FILES
 ## Copy from dotfiles directory
 FILES=(
 ".config/dunst"
@@ -129,7 +127,6 @@ do
 	/usr/bin/sudo /usr/bin/cp -R $FILE && echo ":: Copied $HOME/dotfiles/$FILE to $HOME/$FILE" || echo ":: Failed to copy $HOME/dotfiles/$FILE to $HOME/$FILE"
 done
 
-unset FILES
 ## Make symlinks
 FILES=("music"
 "vids"

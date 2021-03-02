@@ -19,7 +19,7 @@ then
 fi
 
 
-
+# Check if file given exists
 if [ ! -e $FILE ]
 then
 	echo ":: File given does not exist"; exit 1
@@ -61,6 +61,10 @@ then
 	mv $FILE ${CURRENT_DATE_FORMAT}_${1}
 	FILE=${CURRENT_DATE_FORMAT}_${1}
 fi
+
+
+
+# Check if file needs root
 
 
 
