@@ -34,10 +34,12 @@ PATHS=(
 
 case "$1" in
 	desktop)
-		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_desktop 2> /dev/null && echo ":: Backup of config.h_desktop to ~/repos/dotfiles/.config/config.h_desktop sucessful" || echo ":: Couldn't backup config.h_desktop"
+		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_desktop 2> /dev/null && echo ":: Backup of rc.xml to ~/repos/dotfiles/.config/config.h_desktop sucessful" || echo ":: Couldn't backup config.h_desktop"
+		/usr/bin/cp ~/.config/openbox/rc.xml ~/repos/dotfiles/.config/rc.xml_desktop 2> /dev/null && echo ":: Backup of rc.xml to ~/repos/dotfiles/.config/rc.xml_laptop sucessful" || echo ":: Couldn't backup rc.xml"
 	   	;;
 	laptop)
 		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_e550 2> /dev/null && echo ":: Backup of config.h_e550 to ~/repos/dotfiles/.config/config.h_e550 sucessful" || echo "Couldn't backup config.h_e550" 
+		/usr/bin/cp ~/.config/openbox/rc.xml ~/repos/dotfiles/.config/rc.xml_e550 2> /dev/null && echo ":: Backup of rc.xml to ~/repos/dotfiles/.config/rc.xml_e550 sucessful" || echo ":: Couldn't backup rc.xml"
 		;;
 	*)
 		echo ':: Insert device'; echo 'Example: ./backup_dotfiles.sh desktop'; exit 1 ;;
