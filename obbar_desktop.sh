@@ -36,21 +36,13 @@ print_time() {
 	echo -e "$time"
 }
 
-
-separator(){
-	sep=$(echo " |")
-	echo -e "$sep"
-}
-
 while true
 do
-	echo "$(print_mpd_time)"
-	echo "$(print_mpd)"
+	echo "$(print_mpd_time) $(print_mpd)"
 	echo "$(print_volume)"
 	echo "$(print_mem)"
 	echo "$(print_wifi)"
-	echo "$(print_date)"
-	echo "$(print_time)"
+	echo "$(print_date) $(print_time)"
 
 	sleep 2
 
