@@ -58,16 +58,16 @@ symbol() {
 
 while true
 do
-	echo $(print_mpd_time)
-	echo $(print_mpd)
-	echo $(print_volume)
-	echo $(print_mem)
-	echo $(print_wifi)
-	echo $(print_bat)
-	echo $(print_date)
-	echo $(print_time)
+	tput setaf 1; echo "$(print_mpd_time) $(print_mpd)"
+	tput setaf 2; echo "$(print_volume)"
+	tput setaf 3; echo "$(print_mem)"
+	tput setaf 5; echo "$(print_wifi)"
+	tput setaf 7; echo "$(print_bat)"
+	tput setaf 6; echo "$(print_date) $(print_time)"
 
-	sleep 1
+	tput sgr0
+
+	sleep 2
 
 	clear
 done

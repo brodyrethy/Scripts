@@ -1,9 +1,11 @@
-#!/usr/bin/python3
-import os
+#!/bin/bash
 
-os.system("lsblk")
+lsblk
 
-drive = str(input("\nDrive to mount (/dev/sd?? format): "))
-mount_point = str(input("\nMount point: "))
+echo "Drive to mount?"
+read DRIVE
 
-os.system("sudo mount " + drive + " " + mount_point)
+echo "Mount point?"
+read MOUNT_POINT
+
+sudo mount $DRIVE $MOUNT_POINT
