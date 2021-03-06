@@ -38,11 +38,13 @@ print_time() {
 
 while true
 do
-	echo "$(print_mpd_time) $(print_mpd)"
-	echo "$(print_volume)"
-	echo "$(print_mem)"
-	echo "$(print_wifi)"
-	echo "$(print_date) $(print_time)"
+	tput setaf 1; echo "$(print_mpd_time) $(print_mpd)"
+	tput setaf 2; echo "$(print_volume)"
+	tput setaf 3; echo "$(print_mem)"
+	tput setaf 5; echo "$(print_wifi)"
+	tput setaf 6; echo "$(print_date) $(print_time)"
+
+	tput sgr0
 
 	sleep 2
 
