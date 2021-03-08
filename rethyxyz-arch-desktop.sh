@@ -3,7 +3,7 @@
 #	By: Brody Rethy
 #	Website: https://rethy.xyz 
 #
-#	Name: Brody's Post-Installation Script for Arch: Desktop Edition
+#	Name: Rethyxyz's Post-Installation Script for Arch: Desktop Edition
 #	Version: 1.0
 #
 #	Summary:
@@ -43,8 +43,8 @@
 # Defining variables
 #
 # For getting dotfiles. As long as yours keep the same hierarchy
-# as they do in the home directory (i.e. .config/qutebrowser,~/.bash_aliases,
-# ~/.vimrc) they should work flawlessly.
+# as they do in the home directory (i.e. .config/qutebrowser,$HOME/.bash_aliases,
+# $HOME/.vimrc) they should work flawlessly.
 URL="https://github.com/rethyxyz/dotfiles"
 
 
@@ -55,7 +55,7 @@ echo ""; echo "## File/directory hierarchy setup"
 ## write one over this)
 #if [ -d $HOME/dotfiles ]
 #then
-	/usr/bin/rm -rf $HOME/dotfiles && echo ":: Removed dotfiles directory" || { sudo rm -rf $HOME/dotfiles; echo ":: Removed dotfiles directory (used sudo)"; }
+/usr/bin/rm -rf $HOME/dotfiles && echo ":: Removed dotfiles directory" || { sudo rm -rf $HOME/dotfiles; echo ":: Removed dotfiles directory (used sudo)"; }
 #fi
 
 ## Download dotfiles
@@ -82,53 +82,50 @@ echo ""; echo "## File/directory hierarchy setup"
 /usr/bin/sudo /usr/bin/chown -R $USER:wheel /etc/systemd/system/pulseaudio.service
 
 ## Make dirs
-FILES=(
 /usr/bin/sudo /usr/bin/mkdir -p $HOME/.Trash/files
 /usr/bin/sudo /usr/bin/mkdir -p $HOME/.config/mpd/playlists
 /usr/bin/sudo /usr/bin/mkdir -p $HOME/.fonts
 /usr/bin/sudo /usr/bin/mkdir -p $HOME/.vim/undodir
 /usr/bin/sudo /usr/bin/mkdir -p $HOME/500GigDrive{0,1,2,3}
+/usr/bin/touch $HOME/dotfiles/pulseaudio.service
 
 ## copy dwm's config.h
 /usr/bin/sudo /usr/bin/cp $HOME/dotfiles/.config/config.h_desktop $HOME/dotfiles/.config/dwm/config.h
 
 ## Copy from dotfiles directory
-FILES=(
-/usr/bin/sudo /usr/bin/cp -R .config/dunst
-/usr/bin/sudo /usr/bin/cp -R .config/dwm
-/usr/bin/sudo /usr/bin/cp -R .config/mpd
-/usr/bin/sudo /usr/bin/cp -R .config/ncmpcpp
-/usr/bin/sudo /usr/bin/cp -R .config/qutebrowser
-/usr/bin/sudo /usr/bin/cp -R .config/ranger
-/usr/bin/sudo /usr/bin/cp -R .config/st
-/usr/bin/sudo /usr/bin/cp -R .fonts
-/usr/bin/sudo /usr/bin/cp -R .newsboat/
-/usr/bin/sudo /usr/bin/cp -R .bash_aliases
-/usr/bin/sudo /usr/bin/cp -R .bash_profile
-/usr/bin/sudo /usr/bin/cp -R .vimrc
-/usr/bin/sudo /usr/bin/cp -R .bashrc
-/usr/bin/sudo /usr/bin/cp -R .vim/macros.vim
-)
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.config/dunst $HOME/.config/dunst
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.config/dwm $HOME/.config/dwm
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.config/mpd $HOME/.config/mpd
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.config/ncmpcpp $HOME/.config/ncmpcpp
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.config/qutebrowser $HOME/.config/qutebrowser
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.config/ranger $HOME/.config/ranger
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.config/st $HOME/.config/st
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.fonts $HOME/.fonts
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.newsboat/ $HOME/.newsboat/
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.bash_aliases $HOME/.bash_aliases
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.bash_profile $HOME/.bash_profile
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.vimrc $HOME/.vimrc
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.bashrc $HOME/.bashrc
+/usr/bin/sudo /usr/bin/cp -R $HOME/dotfiles/.vim/macros.vim $HOME/.vim/macros.vim
 
 ## Make symlinks
-/usr/bin/ln -sf $HOME/500GigDrive0 $HOME/music
-/usr/bin/ln -sf $HOME/500GigDrive0 $HOME/vids
-/usr/bin/ln -sf $HOME/500GigDrive1 $HOME/docs
-/usr/bin/ln -sf $HOME/500GigDrive1 $HOME/notes
-/usr/bin/ln -sf $HOME/500GigDrive1 $HOME/pix
-/usr/bin/ln -sf $HOME/500GigDrive1 $HOME/repos
+/usr/bin/ln -sf $HOME/500GigDrive0/music $HOME/music
+/usr/bin/ln -sf $HOME/500GigDrive0/vids $HOME/vids
+/usr/bin/ln -sf $HOME/500GigDrive1/docs $HOME/docs
+/usr/bin/ln -sf $HOME/500GigDrive1/notes $HOME/notes
+/usr/bin/ln -sf $HOME/500GigDrive1/pix $HOME/pix
+/usr/bin/ln -sf $HOME/500GigDrive1/repos $HOME/repos
 
 ## Echo data into files. It's easier than having multiple files in my dotilfes repo.
 #
 ### For .xinitrc
-echo "xinput --set-prop 12 'libinput Accel Speed' -1 &" > $HOME/.xinitrc
+echo "xinput --set-prop 8 'libinput Accel Speed' -1 &" > $HOME/.xinitrc
 echo "setxkbmap -option caps:escape &" >> $HOME/.xinitrc
 echo "xset r rate 200 50 &" >> $HOME/.xinitrc
 echo "dwmbar_desktop.sh &" >> $HOME/.xinitrc
 echo "dunst &" >> $HOME/.xinitrc
-echo "picom &" >> $HOME/.xinitrc
 echo "" >> $HOME/.xinitrc
-echo "exec openbox" >> $HOME/.xinitrc
+echo "exec dwm" >> $HOME/.xinitrc
 ### For inputrc
 echo "set show-mode-in-prompt on" >> /etc/inputrc
 ### For nobeep.conf
@@ -144,7 +141,7 @@ echo "[Service]" >> $HOME/dotfiles/pulseaudio.service
 echo "Type=simple" >> $HOME/dotfiles/pulseaudio.service
 echo "PrivateTmp=true" >> $HOME/dotfiles/pulseaudio.service
 echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> $HOME/dotfiles/pulseaudio.service
-/usr/bin/mv $HOME/dotfiles/pulseaudio.service /etc/systemd/system/pulseaudio.service
+/usr/bin/sudo /usr/bin/mv $HOME/dotfiles/pulseaudio.service /etc/systemd/system/pulseaudio.service
 
 
 
@@ -154,7 +151,7 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> $HOME/dot
 # I get the main ones from here.
 echo ""; echo "## Installing programs"
 
-/usr/bin/sudo /usr/bin/pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp python3 python-pip mpv imagemagick irssi newsboat fuse zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs light dos2unix picom dunst libnotify ranger scrot picard openbox -y
+/usr/bin/sudo /usr/bin/pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp python3 python-pip mpv imagemagick irssi newsboat fuse zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs dos2unix dunst libnotify ranger scrot picard -y
 
 ## Ueberzug, for ranger image previews
 #
@@ -180,8 +177,12 @@ make && /usr/bin/sudo make install
 ## vim-plug
 curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+
+
 # Remove programs
 /usr/bin/sudo /usr/bin/pacman -R nano youtube-dl -y
+
+
 
 # Enable services
 /usr/bin/sudo systemctl enable mpd
@@ -190,6 +191,8 @@ curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubuserconte
 ## Set proper permissions
 /usr/bin/sudo chown $USER:wheel -R $HOME
 
+
+
 # Compile suckless programs
 cd $HOME/.config/dwm && /usr/bin/sudo make clean install
 cd $HOME/.config/st && /usr/bin/sudo make clean install
@@ -197,7 +200,7 @@ cd $HOME/.config/st && /usr/bin/sudo make clean install
 
 
 # Convert configs to proper format
-python3 /home/$USER/scripts/convert_configs_for_device.py "laptop"
+/home/$USER/scripts/file_hierarchy_converter.sh laptop
 
 
 

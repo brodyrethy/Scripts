@@ -17,7 +17,7 @@
 # TODO: Make dotfiles path variable
 #
 
-PATHS=(
+FILES=(
 ".bash_aliases"
 ".bash_profile"
 ".bashrc"
@@ -45,11 +45,22 @@ case "$1" in
 		echo ':: Insert device'; echo 'Example: ./backup_dotfiles.sh desktop'; exit 1 ;;
 esac
 
-for PATH in ${PATHS[@]}
+#/usr/bin/rm ~/repos/dotfiles/.config/dwm/config.h 2> /dev/null
+
+for FILE in ${FILES[@]}
 do
-	/usr/bin/cp -R ~/$PATH ~/repos/dotfiles/$PATH 2> /dev/null && echo ":: Backup of $PATH to ~/repos/dotfiles/$PATH successful" || echo ":: $PATH not found, skipping"
+	/usr/bin/diff "$HOME/$FILE" "$HOME/repos/dotfiles/$FILE"
+
+	echo "Are you sure you want to replace $FILE file found in ~/repos/dotfiles? (y/n)"
+	read CHOICE
+
+	if [ $CHOICE = "y" ] || [ $CHOICE = "Y"  ]
+	then
+		/usr/bin/cp -R ~/$FILE ~/repos/dotfiles/$FILE 2> /dev/null && echo ":: Backup of $FILE to ~/repos/dotfiles/$FILE successful" || echo ":: $FILE not found, skipping"
+	else
+		echo ":: Passing on $FILE"
+	fi
 done
 
-/usr/bin/rm ~/repos/dotfiles/.config/dwm/config.h 2> /dev/null
-
 exit 0
+
