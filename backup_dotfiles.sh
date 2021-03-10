@@ -19,8 +19,10 @@
 
 FILES=(
 ".bash_aliases"
+".vim/macros.vim"
 ".bash_profile"
 ".bashrc"
+".config/dunst/dunstrc"
 ".config/mpd/mpd.conf"
 ".config/ncmpcpp/bindings"
 ".config/ncmpcpp/config"
@@ -34,22 +36,22 @@ FILES=(
 
 case "$1" in
 	desktop)
-		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_desktop 2> /dev/null && echo ":: Backup of rc.xml to ~/repos/dotfiles/.config/config.h_desktop sucessful" || echo ":: Couldn't backup config.h_desktop"
-		/usr/bin/cp ~/.config/openbox/rc.xml ~/repos/dotfiles/.config/rc.xml_desktop 2> /dev/null && echo ":: Backup of rc.xml to ~/repos/dotfiles/.config/rc.xml_desktop sucessful" || echo ":: Couldn't backup rc.xml"
+		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_desktop
+		/usr/bin/cp ~/.config/openbox/rc.xml ~/repos/dotfiles/.config/rc.xml_desktop
 	   	;;
 	laptop)
-		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_e550 2> /dev/null && echo ":: Backup of config.h_e550 to ~/repos/dotfiles/.config/config.h_e550 sucessful" || echo "Couldn't backup config.h_e550" 
-		/usr/bin/cp ~/.config/openbox/rc.xml ~/repos/dotfiles/.config/rc.xml_e550 2> /dev/null && echo ":: Backup of rc.xml to ~/repos/dotfiles/.config/rc.xml_e550 sucessful" || echo ":: Couldn't backup rc.xml"
+		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_e550
+		/usr/bin/cp ~/.config/openbox/rc.xml ~/repos/dotfiles/.config/rc.xml_e550
 		;;
 	*)
-		echo ':: Insert device'; echo 'Example: ./backup_dotfiles.sh desktop'; exit 1 ;;
+		echo ':: Insert device'; echo 'Example: ./backup_dotfiles.sh desktop'; exit 1;;
 esac
 
-#/usr/bin/rm ~/repos/dotfiles/.config/dwm/config.h 2> /dev/null
+/usr/bin/rm ~/repos/dotfiles/.config/dwm/config.h 2> /dev/null
 
 for FILE in ${FILES[@]}
 do
-	/usr/bin/diff "$HOME/$FILE" "$HOME/repos/dotfiles/$FILE"
+	/usr/bin/diff -q "$HOME/repos/dotfiles/$FILE" "$HOME/$FILE" 
 
 	echo "Are you sure you want to replace $FILE file found in ~/repos/dotfiles? (y/n)"
 	read CHOICE
@@ -60,7 +62,8 @@ do
 	else
 		echo ":: Passing on $FILE"
 	fi
+
+	clear
 done
 
 exit 0
-

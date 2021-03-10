@@ -55,7 +55,7 @@ echo ""; echo "## File/directory hierarchy setup"
 ## write one over this)
 #if [ -d $HOME/dotfiles ]
 #then
-/usr/bin/rm -rf $HOME/dotfiles && echo ":: Removed dotfiles directory" || { sudo rm -rf $HOME/dotfiles; echo ":: Removed dotfiles directory (used sudo)"; }
+/usr/bin/rm -rf $HOME/dotfiles || sudo rm -rf $HOME/dotfiles
 #fi
 
 ## Download dotfiles
@@ -200,7 +200,7 @@ cd $HOME/.config/st && /usr/bin/sudo make clean install
 
 
 # Convert configs to proper format
-/home/$USER/scripts/file_hierarchy_converter.sh laptop
+/home/$USER/scripts/file_hierarchy_converter.sh desktop 
 
 
 
