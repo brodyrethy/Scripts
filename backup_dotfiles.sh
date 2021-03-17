@@ -8,7 +8,7 @@
 #
 #	Summary:
 #	Used for backing up system dotfiles to 
-#	dotfiles directory (~/repos/dotfiles).
+#	dotfiles directory (~/repos/rethyxyz-dotfiles).
 #
 #	Requires one argument defining the device,
 #	being a desktop or laptop system, as some
@@ -19,48 +19,35 @@
 
 FILES=(
 ".bash_aliases"
-".vim/macros.vim"
 ".bash_profile"
 ".bashrc"
 ".config/dunst/dunstrc"
 ".config/mpd/mpd.conf"
 ".config/ncmpcpp/bindings"
 ".config/ncmpcpp/config"
+".config/picom/picom.conf"
 ".config/qutebrowser/config.py"
 ".config/qutebrowser/quickmarks"
 ".config/ranger/rc.conf"
 ".config/ranger/rifle.conf"
 ".newsboat/config"
+".vim/keybindings.vim"
 ".vimrc"
 )
 
-case "$1" in
-	desktop)
-		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_desktop
-		/usr/bin/cp ~/.config/openbox/rc.xml ~/repos/dotfiles/.config/rc.xml_desktop
-	   	;;
-	laptop)
-		/usr/bin/cp ~/.config/dwm/config.h ~/repos/dotfiles/.config/config.h_e550
-		/usr/bin/cp ~/.config/openbox/rc.xml ~/repos/dotfiles/.config/rc.xml_e550
-		;;
-	*)
-		echo ':: Insert device'; echo 'Example: ./backup_dotfiles.sh desktop'; exit 1;;
-esac
-
-/usr/bin/rm ~/repos/dotfiles/.config/dwm/config.h 2> /dev/null
-
 for FILE in ${FILES[@]}
 do
-	/usr/bin/diff -q "$HOME/repos/dotfiles/$FILE" "$HOME/$FILE" 
+	/usr/bin/diff -q "$HOME/repos/rethyxyz-dotfiles/$FILE" "$HOME/$FILE" 
 
-	echo "Are you sure you want to replace $FILE file found in ~/repos/dotfiles? (y/n)"
+	echo "Are you sure you want to replace $FILE file found in ~/repos/rethyxyz-dotfiles? (y/n)"
 	read CHOICE
 
-	if [ $CHOICE = "y" ] || [ $CHOICE = "Y"  ]
+	if [ "$CHOICE" = "y" ] || [ "$CHOICE" = "Y" ]
 	then
-		/usr/bin/cp -R ~/$FILE ~/repos/dotfiles/$FILE 2> /dev/null && echo ":: Backup of $FILE to ~/repos/dotfiles/$FILE successful" || echo ":: $FILE not found, skipping"
+		/usr/bin/cp -R "$HOME/$FILE" "$HOME/repos/rethyxyz-dotfiles/$FILE"
 	else
-		echo ":: Passing on $FILE"
+		echo ":: Passed on $FILE"
+		sleep 1
 	fi
 
 	clear
