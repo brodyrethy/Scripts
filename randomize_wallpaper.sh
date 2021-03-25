@@ -1,4 +1,4 @@
-WALLPAPERS_DIR="$HOME/pix/wallpapers"
-WALLPAPER=$(ls $WALLPAPERS_DIR | shuf -n 1)
+DIR="$HOME/pix/wallpapers"
+WALLPAPER=$(ls $DIR | shuf -n 1)
 
-feh --bg-fill "$WALLPAPERS_DIR/$WALLPAPER"
+feh --bg-fill "$DIR/$WALLPAPER"

@@ -1,12 +1,13 @@
 #!/bin/bash
 
-if [ "$1" = "Desktop" ] || [ "$1" = "desktop" ]
+if [[ "$1" = "Desktop" ]] || [[ "$1" = "desktop" ]]
 then
 	DEVICE="500GigDrive1"
-elif [ "$1" = "Laptop" ] || [ "$1" = "laptop" ] 
+elif [[ "$1" = "Laptop" ]] || [[ "$1" = "laptop" ]]
 then
 	DEVICE="1TBDrive"
-elif [ -v "$1" ]
+elif [[ -v "$1" ]]
+then
 	echo ":: No device name given (insert laptop, or desktop)"; exit 1
 else
 	echo ":: Device name not found (insert laptop, or desktop)"; exit 1
@@ -21,6 +22,7 @@ FILES=(
 "my_life"
 "programming"
 "visual_media"
+"music/albums"
 )
 
 echo "downloads.html" > $HOME/$DEVICE/repos/rethy.xyz/sitemap.html

@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO Complete this script
 
 #
 #	By: Brody Rethy
@@ -63,19 +64,19 @@ echo ""; echo "## File/directory hierarchy setup"
 ## Makes non-normal files (need root privileges).
 /usr/bin/sudo /usr/bin/chmod 777 /etc/inputrc /etc/modprobe.d/nobeep.conf
 /usr/bin/sudo /usr/bin/chown -R $USER:wheel /etc/inputrc /etc/modprobe.d/nobeep.conf
+/usr/bin/touch $HOME/$DOTFILES/pulseaudio.service
 
 ## Make dirs
 /usr/bin/sudo /usr/bin/mkdir -p $HOME/.Trash/files
 /usr/bin/sudo /usr/bin/mkdir -p $HOME/.config/mpd/playlists
-/usr/bin/sudo /usr/bin/mkdir -p $HOME/.fonts
+/usr/bin/sudo /usr/bin/mkdir -p $HOME/.config/mpv/{scripts,script-opts}
 /usr/bin/sudo /usr/bin/mkdir -p $HOME/.vim/undodir
 /usr/bin/sudo /usr/bin/mkdir -p $HOME/500GigDrive{0,1,2,3}
-/usr/bin/touch $HOME/$DOTFILES/pulseaudio.service
-
-## copy dwm's config.h
-/usr/bin/sudo /usr/bin/cp $HOME/$DOTFILES/.config/config.h_desktop $HOME/$DOTFILES/.config/dwm/config.h
 
 ## Copy from dotfiles directory
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bash_aliases $HOME/.bash_aliases
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bash_profile $HOME/.bash_profile
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bashrc $HOME/.bashrc
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/dunst/ $HOME/.config/
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/mpd/ $HOME/.config/
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/ncmpcpp/ $HOME/.config/
@@ -83,11 +84,8 @@ echo ""; echo "## File/directory hierarchy setup"
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/ranger/ $HOME/.config/
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.fonts/ $HOME/
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.newsboat/ $HOME/
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bash_aliases $HOME/.bash_aliases
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bash_profile $HOME/.bash_profile
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.vimrc $HOME/.vimrc
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bashrc $HOME/.bashrc
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.vim/keybindings.vim $HOME/.vim/keybindings.vim
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.vimrc $HOME/.vimrc
 
 ## Make symlinks
 /usr/bin/ln -sf $HOME/500GigDrive0/music $HOME/music
@@ -129,16 +127,20 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> $HOME/$DO
 
 
 # Install programs
-## Download and install programs from Arch repos
-#
-# I get the main ones from here.
-echo ""; echo "## Installing programs"
 
-/usr/bin/sudo /usr/bin/pacman -Syu dmenu feh xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot vim lxappearance pulseaudio curl mpd mpc ncmpcpp python3 python-pip mpv imagemagick irssi newsboat fuse zathura zathura-cb zathura-pdf-poppler rsync pulsemixer sshfs dos2unix dunst libnotify ranger scrot picard ttf-hanazono adobe-source-han-sans-kr-fonts ttf-dejavu -y
-
-## Ueberzug, for ranger image previews
+## Arch repos
 #
-# It's mandatory for st image previews.
+# I get most programs from here.
+/usr/bin/sudo /usr/bin/pacman -Syu adobe-source-han-sans-kr-fonts curl dmenu \
+	dos2unix dunst feh fuse imagemagick irssi libnotify lxappearance mpc mpd \
+	mpv ncmpcpp newsboat ntfs-3g picard pulseaudio pulsemixer python-pip \
+	python3 qutebrowser ranger rsync scrot sshfs ttf-dejavu ttf-hanazono vim \
+	xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot zathura zathura-cb \
+	zathura-pdf-poppler -y
+
+## ueberzug
+#
+# Mandatory for st image previews.
 /usr/bin/sudo pip3 install youtube-dl ueberzug
 
 ## ranger
@@ -151,7 +153,7 @@ cd $HOME/ranger
 
 ## vim-py3
 #
-# Needed for LaTeX live preview, an plugin for vim.
+# Needed for LaTeX live preview (vim-plugin).
 /usr/bin/git clone https://github.com/vim/vim $HOME/vim
 cd $HOME/vim
 ./configure --enable-perlinterp --enable-python3interp --enable-rubyinterp \
@@ -162,9 +164,11 @@ cd $HOME/vim
 make && /usr/bin/sudo make install
 /usr/bin/sudo ln -s /opt/vim74/bin/vim /usr/bin/vim-py3
 
-## mpv-youtube-quality-picker
-#git clone $
-#cd mpv-youtube-quality-picker
+## mpv-youtube-quality
+git clone https://github.com/jgreco/mpv-youtube-quality
+cd mpv-youtube-quality
+cp youtube-quality.lua ~/.config/mpv/scripts/
+cp youtube-quality.conf ~/.config/mpv/script-opts/
 
 ## install vim-plug
 /usr/bin/curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \

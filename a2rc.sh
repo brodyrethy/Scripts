@@ -14,9 +14,9 @@ printf "# Shortcut keybindings\n" >> $FILE
 printf "## Internal aliases; Rebound\n" >> $FILE
 printf "map br bulkrename\n" >> $FILE
 printf "map bg shell feh --bg-fill %f\n" >> $FILE
-printf "map DD shell rethyxyz-recycle-bin.sh %s\n\n\n\n" >> $FILE
+printf "map DD shell recycle-bin.sh %s\n\n\n\n" >> $FILE
 
 # The space at the end of "cd " is important
 /usr/bin/grep "cd " ~/.bash_aliases | /usr/bin/sed -e "s/alias\ /map\ /g" -e "s/\"//g" -e "s/=/ /g" >> $FILE
 /usr/bin/sed -i "s/0.000000/%f/g" "$FILE"
-/usr/bin/sed -i "s/rethyxyz-recycle-bin.sh/rethyxyz-recycle-bin.sh\ %s/g" "$FILE"
+/usr/bin/sed -i "s/recycle-bin.sh/recycle-bin.sh\ %s/g" "$FILE"
