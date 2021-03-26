@@ -8,7 +8,7 @@
 #
 #	Summary:
 #	Used for backing up system dotfiles to 
-#	dotfiles directory (~/repos/rethyxyz-dotfiles).
+#	dotfiles directory (~/repos/dotfiles).
 #
 #	Requires one argument defining the device,
 #	being a desktop or laptop system, as some
@@ -37,20 +37,19 @@ FILES=(
 
 for FILE in ${FILES[@]}
 do
-	/usr/bin/diff -q "$HOME/repos/rethyxyz-dotfiles/$FILE" "$HOME/$FILE" 
+	/usr/bin/diff "$HOME/repos/dotfiles/$FILE" "$HOME/$FILE" 
 
-	echo "Are you sure you want to replace $FILE file found in ~/repos/rethyxyz-dotfiles? (y/n)"
+	echo "Are you sure you want to replace $FILE file found in ~/repos/dotfiles? (y/n)"
 	read CHOICE
 
 	if [ "$CHOICE" = "y" ] || [ "$CHOICE" = "Y" ]
 	then
-		/usr/bin/cp -R "$HOME/$FILE" "$HOME/repos/rethyxyz-dotfiles/$FILE"
+		/usr/bin/cp -R "$HOME/$FILE" "$HOME/repos/dotfiles/$FILE"
+		clear
 	else
+		clear
 		echo ":: Passed on $FILE"
-		sleep 1
 	fi
-
-	clear
 done
 
 exit 0

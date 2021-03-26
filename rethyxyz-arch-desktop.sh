@@ -35,9 +35,12 @@
 # As long as yours keeps the same hierarchy as they
 # do in the home directory (i.e. $HOME/.config/qutebrowser, $HOME/.bash_aliases,
 # $HOME/.vimrc) they should work flawlessly if you change this.
-DOTFILES="rethyxyz-dotfiles"
-GITHUB_URL="https://github.com/rethyxyz/$DOTFILES"
-
+DOTFILES_REPO="dotfiles"
+DWM_REPO="dwm"
+ST_REPO="st"
+GITHUB_USERNAME="rethyxyz"
+# Used by .xinitrc (dwmbar)
+DEVICE="desktop"
 
 
 # File/directory hierarchy setup
@@ -46,11 +49,14 @@ echo ""; echo "## File/directory hierarchy setup"
 ## write one over this)
 #if [ -d $HOME/dotfiles ]
 #then
-/usr/bin/rm -rf $HOME/$DOTFILES || sudo rm -rf $HOME/$DOTFILES
+/usr/bin/rm -rf $HOME/$DOTFILES_REPO || sudo rm -rf $HOME/$DOTFILES_REPO
 #fi
 
 ## Download dotfiles
-/usr/bin/git clone $GITHUB_URL $HOME/$DOTFILES || exit 1
+/usr/bin/git clone https://github.com/$GITHUB_USERNAME/$DOTFILES_REPO $HOME/
+/usr/bin/git clone https://github.com/$GITHUB_USERNAME/$DWM_REPO $HOME/.$DWM_REPO
+/usr/bin/git clone https://github.com/$GITHUB_USERNAME/$ST_REPO $HOME/.$ST_REPO
+/usr/bin/git clone https://github.com/$GITHUB_USERNAME/dwmbar $HOME/
 
 # Set proper permissions
 /usr/bin/sudo chown $USER:wheel -R $HOME
@@ -78,6 +84,7 @@ echo ""; echo "## File/directory hierarchy setup"
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bash_profile $HOME/.bash_profile
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bashrc $HOME/.bashrc
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/dunst/ $HOME/.config/
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/picom/ $HOME/.config/
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/mpd/ $HOME/.config/
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/ncmpcpp/ $HOME/.config/
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/qutebrowser/ $HOME/.config/
@@ -136,7 +143,7 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> $HOME/$DO
 	mpv ncmpcpp newsboat ntfs-3g picard pulseaudio pulsemixer python-pip \
 	python3 qutebrowser ranger rsync scrot sshfs ttf-dejavu ttf-hanazono vim \
 	xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot zathura zathura-cb \
-	zathura-pdf-poppler -y
+	zathura-pdf-poppler picom picard -y
 
 ## ueberzug
 #
@@ -166,9 +173,9 @@ make && /usr/bin/sudo make install
 
 ## mpv-youtube-quality
 git clone https://github.com/jgreco/mpv-youtube-quality
-cd mpv-youtube-quality
-cp youtube-quality.lua ~/.config/mpv/scripts/
-cp youtube-quality.conf ~/.config/mpv/script-opts/
+cd mpv-youtube-quality; /usr/bin/sudo /usr/bin/chown -R $USER:wheel *
+/usr/bin/cp youtube-quality.lua $HOME/.config/mpv/scripts/
+/usr/bin/cp youtube-quality.conf $HOME/.config/mpv/script-opts/
 
 ## install vim-plug
 /usr/bin/curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
@@ -192,13 +199,13 @@ cp youtube-quality.conf ~/.config/mpv/script-opts/
 
 
 # Compile suckless programs
-cd $HOME/.config/rethyxyz-dwm && /usr/bin/sudo make clean install
-cd $HOME/.config/rethyxyz-st && /usr/bin/sudo make clean install
+cd $HOME/.$DWM_REPO && /usr/bin/sudo make clean install
+cd $HOME/.$ST_REPO && /usr/bin/sudo make clean install
 
 
 
-# Convert configs to proper format
-/home/$USER/scripts/file_hierarchy_converter.sh desktop
+# generate ranger rc.conf from bash_aliases
+a2rc.sh
 
 
 

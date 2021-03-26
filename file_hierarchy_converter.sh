@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script is now useless, as both of my devices now share the same file structure.
+
 find_and_replace() {
 	# 1:file 2:find 3:replace
 	NEW_DATA=$(/usr/bin/sed -i "s/$2/$3/g" $1)
