@@ -43,8 +43,18 @@ GITHUB_USERNAME="rethyxyz"
 DEVICE="desktop"
 
 
+
 # File/directory hierarchy setup
 echo ""; echo "## File/directory hierarchy setup"
+## Make dirs
+/usr/bin/sudo /usr/bin/mkdir -p $HOME/.Trash/
+/usr/bin/sudo /usr/bin/mkdir -p $HOME/.config/mpd/playlists
+/usr/bin/sudo /usr/bin/mkdir -p $HOME/.config/mpv/{scripts,script-opts}
+/usr/bin/sudo /usr/bin/mkdir -p $HOME/.vim/undodir
+/usr/bin/sudo /usr/bin/mkdir -p $HOME/500GigDrive{0,1,2,3}
+/usr/bin/sudo /usr/bin/mkdir -p $HOME/repos
+/usr/bin/sudo /usr/bin/mkdir -p $HOME/docs
+
 ## Check if dir exists (I didn't break into function as it takes more code to
 ## write one over this)
 #if [ -d $HOME/dotfiles ]
@@ -68,39 +78,25 @@ echo ""; echo "## File/directory hierarchy setup"
 # text after each iteration.
 #
 ## Makes non-normal files (need root privileges).
-/usr/bin/sudo /usr/bin/chmod 777 /etc/inputrc /etc/modprobe.d/nobeep.conf
-/usr/bin/sudo /usr/bin/chown -R $USER:wheel /etc/inputrc /etc/modprobe.d/nobeep.conf
+/usr/bin/sudo /usr/bin/chmod 777 /etc/inputrc
+/usr/bin/sudo /usr/bin/chown -R $USER:wheel /etc/inputrc
 /usr/bin/touch $HOME/$DOTFILES/pulseaudio.service
 
-## Make dirs
-/usr/bin/sudo /usr/bin/mkdir -p $HOME/.Trash/files
-/usr/bin/sudo /usr/bin/mkdir -p $HOME/.config/mpd/playlists
-/usr/bin/sudo /usr/bin/mkdir -p $HOME/.config/mpv/{scripts,script-opts}
-/usr/bin/sudo /usr/bin/mkdir -p $HOME/.vim/undodir
-/usr/bin/sudo /usr/bin/mkdir -p $HOME/500GigDrive{0,1,2,3}
 
 ## Copy from dotfiles directory
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bash_aliases $HOME/.bash_aliases
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bash_profile $HOME/.bash_profile
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.bashrc $HOME/.bashrc
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/dunst/ $HOME/.config/
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/picom/ $HOME/.config/
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/mpd/ $HOME/.config/
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/ncmpcpp/ $HOME/.config/
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/qutebrowser/ $HOME/.config/
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/ranger/ $HOME/.config/
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.fonts/ $HOME/
-/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.newsboat/ $HOME/
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/dunst/ $HOME/.config/dunst
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/mpd/ $HOME/.config/mpd
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/ncmpcpp/ $HOME/.config/ncmpcpp
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/picom/ $HOME/.config/picom
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/qutebrowser/ $HOME/.config/qutebrowser
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.config/ranger/ $HOME/.config/ranger
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.fonts/ $HOME/.fonts
+/usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.newsboat/ $HOME/.newsboat
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.vim/keybindings.vim $HOME/.vim/keybindings.vim
 /usr/bin/sudo /usr/bin/cp -R $HOME/$DOTFILES/.vimrc $HOME/.vimrc
-
-## Make symlinks
-/usr/bin/ln -sf $HOME/500GigDrive0/music $HOME/music
-/usr/bin/ln -sf $HOME/500GigDrive0/vids $HOME/vids
-/usr/bin/ln -sf $HOME/500GigDrive1/docs $HOME/docs
-/usr/bin/ln -sf $HOME/500GigDrive1/notes $HOME/notes
-/usr/bin/ln -sf $HOME/500GigDrive1/pix $HOME/pix
-/usr/bin/ln -sf $HOME/500GigDrive1/repos $HOME/repos
 
 ## Echo data into files.
 #
@@ -114,10 +110,13 @@ echo "xinput --set-prop 8 'libinput Accel Speed' -1 &" >> $HOME/.xinitrc
 echo "xset r rate 200 50 &" >> $HOME/.xinitrc
 echo "" >> $HOME/.xinitrc
 echo "exec dwm" >> $HOME/.xinitrc
+
 ### For inputrc
 echo "set show-mode-in-prompt on" >> /etc/inputrc
+
 ### For nobeep.conf
 echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+
 ### For pulseaudio.service
 echo "[Unit]" > $HOME/$DOTFILES/pulseaudio.service
 echo "Description=PulseAudio Daemon" >> $HOME/$DOTFILES/pulseaudio.service
@@ -140,10 +139,10 @@ echo "ExecStart=/usr/bin/pulseaudio --system --realtime --disallow" >> $HOME/$DO
 # I get most programs from here.
 /usr/bin/sudo /usr/bin/pacman -Syu adobe-source-han-sans-kr-fonts curl dmenu \
 	dos2unix dunst feh fuse imagemagick irssi libnotify lxappearance mpc mpd \
-	mpv ncmpcpp newsboat ntfs-3g picard pulseaudio pulsemixer python-pip \
+	mpv ncmpcpp newsboat ntfs-3g pulseaudio pulsemixer python-pip \
 	python3 qutebrowser ranger rsync scrot sshfs ttf-dejavu ttf-hanazono vim \
 	xorg xorg-xinit xorg-xinput xorg-xset xorg-xsetroot zathura zathura-cb \
-	zathura-pdf-poppler picom picard -y
+	zathura-pdf-poppler picom picard dunst libnotify qutebrowser -y
 
 ## ueberzug
 #
