@@ -1,20 +1,19 @@
 #!/bin/bash
 #
-## By: Brody Rethy
-## Website: https://rethy.xyz
+# By: Brody Rethy
+# Website: https://rethy.xyz
 #
-## Name: backup_dotfiles.sh
-## Version: 1.0
+# Name: backup_dotfiles.sh
+# Version: 1.0
 #
-## Summary:
-## Used for backing up system dotfiles to
-## dotfiles directory (~/repos/dotfiles).
+# Summary:
+# Used for backing up system dotfiles to dotfiles directory 
+# (~/Documents/Repositories/dotfiles).
 #
-## Requires one argument defining the device,
-## being a desktop or laptop system, as some
-## configs differ between system to system.
+# Requires one argument defining the device, being a desktop or laptop system, 
+# as some configs differ between system to system.
 
-# file list goes here (taken from the perspective of user $HOME directory)
+# File list goes here (taken from the perspective of $HOME directory).
 FILES=(
 ".bash_aliases"
 ".bash_profile"
@@ -29,22 +28,18 @@ FILES=(
 ".config/ranger/rc.conf"
 ".config/ranger/rifle.conf"
 ".newsboat/config"
-".vim/abbreviation.vim"
-".vim/leader.vim"
-".vim/macro.vim"
-".vim/remap.vim"
 ".vimrc"
 )
 
 for FILE in ${FILES[@]}
 do
-	/usr/bin/diff -n "$HOME/repos/dotfiles/$FILE" "$HOME/$FILE"
+	/usr/bin/diff -n "$HOME/Documents/Repositories/dotfiles/$FILE" "$HOME/$FILE"
 
-	echo "Are you sure you want to replace $FILE file found in ~/repos/dotfiles? (y/n)"
+	echo "Are you sure you want to replace $FILE file found in ~/Documents/Repositories/dotfiles? (y/n)"
 	read CHOICE
 
 	case "$CHOICE" in
-		y | Y) /usr/bin/cp -R "$HOME/$FILE" "$HOME/repos/dotfiles/$FILE"; clear ;;
+		y | Y) /usr/bin/cp -R "$HOME/$FILE" "$HOME/Documents/Repositories/dotfiles/$FILE"; clear ;;
 		*) clear; echo ":: Passed on $FILE" ;;
 	esac
 
