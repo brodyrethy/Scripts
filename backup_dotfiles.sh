@@ -13,7 +13,7 @@
 # Requires one argument defining the device, being a desktop or laptop system, 
 # as some configs differ between system to system.
 
-# File list goes here (taken from the perspective of $HOME directory).
+# File list goes here (taken from the perspective of $HOME variable).
 FILES=(
 ".bash_aliases"
 ".bash_profile"
@@ -30,21 +30,24 @@ FILES=(
 ".newsboat/config"
 ".vimrc"
 )
+DOTFILES_REPO="Documents/Repositories/dotfiles"
 
-for FILE in ${FILES[@]}
-do
-	/usr/bin/diff -n "$HOME/Documents/Repositories/dotfiles/$FILE" "$HOME/$FILE"
+for FILE in ${FILES[@]}; do
+	/usr/bin/diff -n "$HOME/$DOTFILES_REPO/$FILE" "$HOME/$FILE"
 
-	echo "Are you sure you want to replace $FILE file found in ~/Documents/Repositories/dotfiles? (y/n)"
+	/usr/bin/echo "Replace \"$FILE\" found in ~/$DOTFILES_REPO? (y/n)"
 	read CHOICE
 
 	case "$CHOICE" in
-		y | Y) /usr/bin/cp -R "$HOME/$FILE" "$HOME/Documents/Repositories/dotfiles/$FILE"; clear ;;
-		*) clear; echo ":: Passed on $FILE" ;;
+		y | Y)
+            /usr/bin/cp -R "$HOME/$FILE" "$HOME/$DOTFILES_REPO/$FILE"
+            clear
+            ;;
+		*)
+            clear
+            /usr/bin/echo ":: Passed on $FILE."
+            ;;
 	esac
-
 done
 
-echo "All done!"
-
-exit 0
+/usr/bin/echo "All done."; exit 0
