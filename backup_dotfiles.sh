@@ -6,11 +6,11 @@
 # Name: backup_dotfiles.sh
 #
 # Summary:
-# Used for backing up system dotfiles to dotfiles directory
-# (~/Documents/Repositories/dotfiles).
+# Used for backing up system dotfiles to dotfiles directory, wherever that may
+# be. Define this using DOTFILES_REPO variable.
 #
-# Requires one argument defining the device, being a desktop or laptop system,
-# as some configs differ between system to system.
+
+DOTFILES_REPO="Documents/Repositories/dotfiles"
 
 # File list goes here (taken from the perspective of $HOME variable).
 FILES=(
@@ -30,23 +30,22 @@ FILES=(
 ".vimrc"
 )
 
-DOTFILES_REPO="Documents/Repositories/dotfiles"
-
 for FILE in ${FILES[@]}; do
 	/usr/bin/diff -n "$HOME/$DOTFILES_REPO/$FILE" "$HOME/$FILE"
 
 	/usr/bin/echo "Replace \"$FILE\" found in ~/$DOTFILES_REPO? (y/n)"
-	read CHOICE
+	read -r CHOICE
 
 	case "$CHOICE" in
 		y | Y)
             /usr/bin/cp -R "$HOME/$FILE" "$HOME/$DOTFILES_REPO/$FILE"
             clear
-            ;;
+        ;;
+
 		*)
             clear
             /usr/bin/echo ":: Passed on $FILE."
-            ;;
+        ;;
 	esac
 done
 
