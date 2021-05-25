@@ -4,13 +4,12 @@
 # Website: https://rethy.xyz
 #
 # Name: backup_dotfiles.sh
-# Version: 1.0
 #
 # Summary:
-# Used for backing up system dotfiles to dotfiles directory 
+# Used for backing up system dotfiles to dotfiles directory
 # (~/Documents/Repositories/dotfiles).
 #
-# Requires one argument defining the device, being a desktop or laptop system, 
+# Requires one argument defining the device, being a desktop or laptop system,
 # as some configs differ between system to system.
 
 # File list goes here (taken from the perspective of $HOME variable).
@@ -30,6 +29,7 @@ FILES=(
 ".newsboat/config"
 ".vimrc"
 )
+
 DOTFILES_REPO="Documents/Repositories/dotfiles"
 
 for FILE in ${FILES[@]}; do
