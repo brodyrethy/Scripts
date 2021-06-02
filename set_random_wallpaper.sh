@@ -1,0 +1,4 @@
+PATH_TO_WALLPAPERS="$HOME/Pictures/Wallpapers"
+WALLPAPER=$(ls $PATH_TO_WALLPAPERS/ | shuf -n 1)
+
+feh --bg-fill "$PATH_TO_WALLPAPERS/$WALLPAPER"

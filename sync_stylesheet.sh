@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WEBSITE_DIRECTORY="Documents/Repositories/rethy.xyz"
+PATH_TO_WEBSITE_DIRECTORY="$HOME/Documents/Repositories/rethy.xyz"
 
 SUB_DIRECTORIES=(
 "computing"
@@ -14,8 +14,16 @@ SUB_DIRECTORIES=(
 "working_on"
 )
 
-for DIRECTORY in ${SUB_DIRECTORIES[@]}; do
-    /usr/bin/cp $HOME/$WEBSITE_DIRECTORY/footer.php $HOME/$WEBSITE_DIRECTORY/$DIRECTORY/footer.php
-    /usr/bin/cp $HOME/$WEBSITE_DIRECTORY/header.php $HOME/$WEBSITE_DIRECTORY/$DIRECTORY/header.php
-    /usr/bin/cp $HOME/$WEBSITE_DIRECTORY/style.css $HOME/$WEBSITE_DIRECTORY/$DIRECTORY/style.css
+FILES_TO_COPY=(
+"footer.php"
+"header.php"
+"style.css"
+)
+
+for SUB_DIRECTORY in "${SUB_DIRECTORIES[@]}"; do
+    for FILE in "${FILES_TO_COPY[@]}"; do
+        /usr/bin/cp "$PATH_TO_WEBSITE_DIRECTORY/$FILE" "$PATH_TO_WEBSITE_DIRECTORY/$SUB_DIRECTORY/$FILE" 2> /dev/null \
+            && /usr/bin/printf "Copied to \"$PATH_TO_WEBSITE_DIRECTORY/$SUB_DIRECTORY/$FILE\" successfully.\n" \
+            || /usr/bin/printf "Failed to copy to \"$PATH_TO_WEBSITE_DIRECTORY/$SUB_DIRECTORY/$FILE\".\n"
+    done
 done

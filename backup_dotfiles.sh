@@ -6,13 +6,12 @@
 # Name: backup_dotfiles.sh
 #
 # Summary:
-# Used for backing up system dotfiles to dotfiles directory, wherever that may
-# be. Define this using DOTFILES_REPO variable.
+# Used for backing up system dotfiles to dotfiles directory
 #
 
-DOTFILES_REPO="Documents/Repositories/dotfiles"
+DOTFILES_REPO="$HOME/Documents/Repositories/dotfiles"
 
-# File list goes here (taken from the perspective of $HOME variable).
+# File list goes here (defined from perspective of $HOME variable).
 FILES=(
 ".bash_aliases"
 ".bash_profile"
@@ -31,22 +30,23 @@ FILES=(
 )
 
 for FILE in ${FILES[@]}; do
-	/usr/bin/diff -n "$HOME/$DOTFILES_REPO/$FILE" "$HOME/$FILE"
+	/usr/bin/diff -n "$DOTFILES_REPO/$FILE" "$HOME/$FILE"
 
-	/usr/bin/echo "Replace \"$FILE\" found in ~/$DOTFILES_REPO? (y/n)"
+	/usr/bin/printf "Replace \"%s\" found in ~/%s? (y/n)\n" $FILE $DOTFILES_REPO
+
 	read -r CHOICE
 
 	case "$CHOICE" in
 		y | Y)
-            /usr/bin/cp -R "$HOME/$FILE" "$HOME/$DOTFILES_REPO/$FILE"
+            /usr/bin/cp -R "$HOME/$FILE" "$DOTFILES_REPO/$FILE"
             clear
         ;;
 
 		*)
             clear
-            /usr/bin/echo ":: Passed on $FILE."
+            /usr/bin/printf ":: Passed on $FILE.\n"
         ;;
 	esac
 done
 
-/usr/bin/echo "All done."; exit 0
+/usr/bin/printf "All done.\n"; exit 0
